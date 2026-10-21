@@ -1,49 +1,212 @@
-import AICopilotTyping from './AICopilotTyping';
 import {useEffect,useMemo,useState} from 'react';
-import {DndContext,PointerSensor,KeyboardSensor,useSensor,useSensors,closestCenter,type DragEndEvent} from '@dnd-kit/core';
-import {SortableContext,useSortable,verticalListSortingStrategy,arrayMove,sortableKeyboardCoordinates} from '@dnd-kit/sortable';
-import {CSS} from '@dnd-kit/utilities';
-import {ArrowLeft,Save,Globe,Plus,Trash2,Copy,Undo2,Redo2,Monitor,Smartphone,Download,Eye,EyeOff,GripVertical,Upload,Settings2} from 'lucide-react';
 import {Link,useNavigate,useParams} from 'react-router-dom';
+import {arrayMove} from '@dnd-kit/sortable';
+import {Settings2} from 'lucide-react';
+import type {PremiumTemplate} from '../lib/templates';
 import type {Actor,Block,Site} from '../lib/types';
-import {catalog,makeBlock,snapshot,uid} from '../lib/factory';
-import {designDirections,themeForDirection,directionOf} from '../lib/design';
-import {premiumTemplates,applyPremiumTemplate,type PremiumTemplate} from '../lib/templates';
-import {sectionRegistry,sanitizeBlockField} from '../lib/schema';
+import {makeBlock,snapshot} from '../lib/factory';
 import {readStore,saveSite} from '../lib/local';
-import {Renderer} from './Renderer';
-import {requestCopilot,validateAIOperations,type AIResult} from '../lib/pageforge-ai';
-import '../styles/pages/pageforge-ai-v26.css';
 import {downloadFile,exportStaticHtml} from '../lib/export';
-function SortableBlock({block,selected,onSelect}:{block:Block;selected:boolean;onSelect:()=>void}){const {attributes,listeners,setNodeRef,transform,transition,isDragging}=useSortable({id:block.id});return <div ref={setNodeRef} style={{transform:CSS.Transform.toString(transform),transition,opacity:isDragging?.5:1}} className={`layer ${selected?'selected':''}`}><button className="drag" {...attributes} {...listeners} aria-label="Drag block"><GripVertical size={16}/></button><button className="layer-label" onClick={onSelect}><span>{block.kind}</span><strong>{block.title}</strong></button></div>}
-export function Editor({actor}:{actor:Actor}){const {id}=useParams();const navigate=useNavigate();const original=useMemo(()=>{const s=readStore();const found=s.sites.find(x=>x.id===id);return found&&s.workspaces.some(w=>w.id===found.workspaceId&&w.ownerId===actor.id)?found:null},[actor.id,id]);const [site,setSite]=useState<Site|null>(original?structuredClone(original):null);const [selectedId,setSelectedId]=useState(original?.blocks[0]?.id||'');const [tab,setTab]=useState<'blocks'|'theme'|'settings'>('blocks');const [device,setDevice]=useState<'desktop'|'tablet'|'mobile'>('desktop');const [pfPanel,setPfPanel]=useState<'preview'|'blocks'|'design'>('preview');const [activeField,setActiveField]=useState<string>('');const [history,setHistory]=useState<Site[]>([]);const [future,setFuture]=useState<Site[]>([]);const [dirty,setDirty]=useState(false);const [aiPrompt,setAiPrompt]=useState('Transforme esta hero em uma empresa de robotica');const [aiMode,setAiMode]=useState<'mock'|'base44'>('mock');const [aiBusy,setAiBusy]=useState(false);const [aiError,setAiError]=useState('');const [aiProposal,setAiProposal]=useState<AIResult|null>(null);const [chosenTemplate,setChosenTemplate]=useState<PremiumTemplate>('technology');const sensors=useSensors(useSensor(PointerSensor,{activationConstraint:{distance:5}}),useSensor(KeyboardSensor,{coordinateGetter:sortableKeyboardCoordinates}));useEffect(()=>{const listener=(e:KeyboardEvent)=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();document.getElementById('pf-save')?.click();}};window.addEventListener('keydown',listener);return()=>window.removeEventListener('keydown',listener)},[]);
-if(!site)return <main className="empty"><h2>Page not found or access denied</h2><Link to="/dashboard">Back</Link></main>;
-const selected=site.blocks.find(b=>b.id===selectedId);
-const selectedSchema=selected?sectionRegistry[selected.kind]:null;
-const selectFromCanvas=(e:React.MouseEvent<HTMLElement>)=>{
- const target=e.target as HTMLElement;
- const block=target.closest<HTMLElement>('[data-pf-block]');
- if(!block||target.closest('[data-pf-canvas-control]'))return;
-  e.preventDefault();e.stopPropagation();
- const id=block.dataset.pfBlock||'';
- const field=target.closest<HTMLElement>('[data-pf-field]')?.dataset.pfField||'';
- setSelectedId(id);setActiveField(field);setTab('blocks');
- window.requestAnimationFrame(()=>{
-  const panel=document.querySelector<HTMLElement>('.inspector');
-  const fieldInput=field?panel?.querySelector<HTMLElement>(`[data-pf-config="${field}"]`):null;
-  const focusTarget=fieldInput?.querySelector<HTMLElement>('input,textarea,select')||fieldInput;
-  focusTarget?.scrollIntoView({block:'nearest',behavior:'smooth'});
-  focusTarget?.classList.add('pf7-field-target');
-  window.setTimeout(()=>focusTarget?.classList.remove('pf7-field-target'),1600);
- });
-};
-const apply=(fn:(s:Site)=>Site)=>{setHistory(h=>[...h.slice(-49),structuredClone(site)]);setFuture([]);setSite(fn(structuredClone(site)));setDirty(true)};
-const patch=(updates:Partial<Block>)=>apply(s=>({...s,blocks:s.blocks.map(b=>b.id===selectedId?{...b,...updates}:b)}));
-const aiGenerate=async()=>{setAiBusy(true);setAiError('');setAiProposal(null);try{const result=await requestCopilot({instruction:aiPrompt,selectedId,blocks:site.blocks},aiMode);setAiProposal(result)}catch(e){setAiError(e instanceof Error?e.message:String(e))}finally{setAiBusy(false)}};
-const aiApply=()=>{if(!aiProposal)return;try{const ops=validateAIOperations(aiProposal.operations,site.blocks);let firstAdded='';apply(s=>{let blocks=[...s.blocks];for(const op of ops){if(op.type==='update_block'){blocks=blocks.map(b=>b.id===op.blockId?{...b,...op.changes}:b)}else if(op.type==='add_block'){const b={...makeBlock(op.kind as Block['kind']),...op.changes};const idx=blocks.findIndex(x=>x.id===op.afterId);blocks.splice(idx<0?blocks.length:idx+1,0,b);if(!firstAdded)firstAdded=b.id}else if(op.type==='move_block'){const idx=blocks.findIndex(b=>b.id===op.blockId);const to=idx+(op.direction==='up'?-1:1);if(idx>=0&&to>=0&&to<blocks.length){const [b]=blocks.splice(idx,1);blocks.splice(to,0,b)}}}return {...s,blocks}});if(firstAdded)setSelectedId(firstAdded);setAiProposal(null);setAiError('Alteracoes aplicadas. Use Undo para desfazer.')}catch(e){setAiError(e instanceof Error?e.message:String(e))}};
-const save=(publish=false)=>{try{const updated:Site={...site,version:site.version+(publish?1:0),published:publish||site.published,publishedSnapshot:publish?null:site.publishedSnapshot};if(publish)updated.publishedSnapshot=snapshot(updated);const saved=saveSite(actor,updated);localStorage.removeItem(`pageforge-preview-${site.id}`);setSite(saved);setDirty(false);alert(publish?'Page published!':'Draft saved!')}catch(e){alert(String(e))}};
-const undo=()=>{if(!history.length)return;setFuture(f=>[site,...f]);setSite(history.at(-1)!);setHistory(h=>h.slice(0,-1));setDirty(true)};const redo=()=>{if(!future.length)return;setHistory(h=>[...h,site]);setSite(future[0]);setFuture(f=>f.slice(1));setDirty(true)};
-const moveCanvasBlock=(blockId:string,direction:-1|1)=>{const visible=site.blocks.filter(b=>b.enabled);const current=visible.findIndex(b=>b.id===blockId);const neighbor=visible[current+direction];if(!neighbor)return;const index=site.blocks.findIndex(b=>b.id===blockId),next=site.blocks.findIndex(b=>b.id===neighbor.id);apply(s=>({...s,blocks:arrayMove(s.blocks,index,next)}));setSelectedId(blockId);setActiveField('');};
- const dragEnd=(e:DragEndEvent)=>{const {active,over}=e;if(over&&active.id!==over.id)apply(s=>{const a=s.blocks.findIndex(b=>b.id===active.id),b=s.blocks.findIndex(x=>x.id===over.id);return {...s,blocks:arrayMove(s.blocks,a,b)}})};
-const upload=(file:File)=>{if(file.size>2_000_000){alert('In local mode, images must be no larger than 2 MB.');return;}const reader=new FileReader();reader.onload=()=>patch({image:String(reader.result)});reader.readAsDataURL(file)};
-return <div className="editor"><header className="editor-top"><Link to="/dashboard" className="iconbtn"><ArrowLeft size={18}/></Link><div className="editor-heading"><strong>{site.name}</strong><small>{dirty?'Unsaved changes':'Draft updated'} · v{site.version}</small></div><div className="editor-top-actions"><button className="iconbtn" title="Undo" onClick={undo} disabled={!history.length}><Undo2 size={17}/></button><button className="iconbtn" title="Redo" onClick={redo} disabled={!future.length}><Redo2 size={17}/></button><button className={`iconbtn ${device==='desktop'?'active':''}`} onClick={()=>setDevice('desktop')}><Monitor size={17}/></button><button className={`iconbtn ${device==='tablet'?'active':''}`} title="Tablet 768px" onClick={()=>setDevice('tablet')}><span aria-hidden="true">▯</span></button><button className={`iconbtn ${device==='mobile'?'active':''}`} onClick={()=>setDevice('mobile')}><Smartphone size={17}/></button><button className="btn secondary" onClick={()=>downloadFile(`${site.slug}.json`,JSON.stringify(site,null,2),'application/json')}><Download size={16}/> JSON</button><button className="btn secondary" onClick={()=>downloadFile(`${site.slug}.html`,exportStaticHtml(site),'text/html')}><Download size={16}/> HTML</button><button className="btn secondary" title="Open full preview in a new tab" onClick={()=>{localStorage.setItem(`pageforge-preview-${site.id}`,JSON.stringify({actorId:actor.id,expires:Date.now()+30*60*1000,site}));window.open(`/preview/${site.id}`,"_blank","noopener,noreferrer")}}><Eye size={16}/> Preview</button><button id="pf-save" className="btn secondary" onClick={()=>save()}><Save size={16}/> Save</button><button className="btn primary" onClick={()=>save(true)}><Globe size={16}/> Publish</button></div></header><div className="editor-body" data-pf-panel={pfPanel}><div className="pf-editor-mobile-tabs" role="group" aria-label="Editor panels"><button type="button" aria-pressed={pfPanel==='preview'} onClick={()=>setPfPanel('preview')}>Preview</button><button type="button" aria-pressed={pfPanel==='blocks'} onClick={()=>setPfPanel('blocks')}>Sections</button><button type="button" aria-pressed={pfPanel==='design'} onClick={()=>setPfPanel('design')}>Design & AI</button></div><aside className="editor-sidebar"><div className="editor-tabs"><button className={tab==='blocks'?'active':''} onClick={()=>setTab('blocks')}>Blocks</button><button className={tab==='theme'?'active':''} onClick={()=>setTab('theme')}>Style</button><button className={tab==='settings'?'active':''} onClick={()=>setTab('settings')}>Site</button></div>{tab==='blocks'&&<><div className="sidebar-heading"><strong>Page structure</strong><small>Drag to reorder</small></div><DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={dragEnd}><SortableContext items={site.blocks.map(b=>b.id)} strategy={verticalListSortingStrategy}><div className="layers">{site.blocks.map(b=><SortableBlock key={b.id} block={b} selected={selectedId===b.id} onSelect={()=>{setSelectedId(b.id);if(window.matchMedia('(max-width:1023px)').matches)setPfPanel('design')}}/>)}</div></SortableContext></DndContext><div className="sidebar-heading"><strong>Add section</strong></div><div className="catalog">{catalog.map(c=><button key={c.kind} onClick={()=>{const b=makeBlock(c.kind);apply(s=>({...s,blocks:[...s.blocks,b]}));setSelectedId(b.id)}}><Plus size={15}/><span><strong>{c.name}</strong><small>{c.description}</small></span></button>)}</div></>}{tab==='theme'&&<div className="properties"><div className="pf4-template-editor"><h3>Complete premium templates</h3><p className="pf4-template-note">Try a complete visual structure. When applying, you can choose whether to keep your current content.</p><div className="pf4-template-picker">{premiumTemplates.map(t=><button type="button" key={t.id} className="pf4-template-option pf6-template-option" aria-pressed={chosenTemplate===t.id} onClick={()=>setChosenTemplate(t.id)}><span className="pf4-template-swatch" style={{background:t.preview}}/><strong>{t.name}</strong><small>{t.category}</small></button>)}</div><button className="btn secondary pf4-apply" type="button" onClick={()=>apply(s=>applyPremiumTemplate(s,chosenTemplate,false))}>Apply style while keeping content</button><button className="btn secondary pf4-apply" type="button" onClick={()=>{if(confirm('Replace all sections with the premium template? Your current text will be replaced. You can undo this in the editor.'))apply(s=>applyPremiumTemplate(s,chosenTemplate,true))}}>Use complete template with sample content</button></div><h3>Art direction</h3><p className="pf-design-description">One choice transforms the entire layout without deleting your content.</p><div className="pf-design-picker">{designDirections.map(d=><button key={d.id} type="button" className="pf-design-choice" aria-pressed={directionOf(site.theme)===d.id} onClick={()=>apply(s=>({...s,theme:themeForDirection(s.theme,d.id)}))}><span className="pf-design-swatch" style={{'--swatch-bg':d.id==='editorial'||d.id==='product'||d.id==='organic'?'#f2f0e9':'#10111c','--swatch-accent':d.accent} as React.CSSProperties}/><strong>{d.name}</strong><small>{d.description}</small></button>)}</div><button className="btn secondary pf-design-surprise" onClick={()=>{const index=designDirections.findIndex(d=>d.id===directionOf(site.theme));const next=designDirections[(index+1)%designDirections.length];apply(s=>({...s,theme:themeForDirection(s.theme,next.id)}))}}>✦ Surprise me with another style</button><h3>Fine-tune design</h3>{(['primary','surface','text'] as const).map(k=><label key={k}>{k==='primary'?'Primary color':k==='surface'?'Background':'Text color'}<input type="color" value={site.theme[k]} onChange={e=>apply(s=>({...s,theme:{...s.theme,[k]:e.target.value}}))}/></label>)}<label>Corner radius <input type="range" min="0" max="40" value={site.theme.radius} onChange={e=>apply(s=>({...s,theme:{...s.theme,radius:Number(e.target.value)}}))}/></label><label>Font<select value={site.theme.font} onChange={e=>apply(s=>({...s,theme:{...s.theme,font:e.target.value}}))}><option value="Inter, system-ui, sans-serif">Inter / System</option><option value="Georgia, serif">Georgia</option><option value="Arial, sans-serif">Arial</option><option value="Verdana, sans-serif">Verdana</option></select></label></div>}{tab==='settings'&&<div className="properties"><h3>Page settings</h3><label>Name<input value={site.name} onChange={e=>apply(s=>({...s,name:e.target.value}))}/></label><label>Slug<input value={site.slug} onChange={e=>apply(s=>({...s,slug:e.target.value.toLowerCase().replace(/[^a-z0-9-]/g,'-')}))}/></label><label>Description<textarea value={site.description} onChange={e=>apply(s=>({...s,description:e.target.value}))}/></label>{site.published&&<Link className="btn secondary" to={`/p/${site.publishedSnapshot?.slug||site.slug}`} target="_blank">View published version ↗</Link>}<button className="btn secondary" onClick={()=>navigate('/dashboard')}>Back to dashboard</button></div>}</aside><main className="editor-stage" onClickCapture={selectFromCanvas} aria-label="Visual editor: click text, images, and blocks to configure them"><div className={`canvas-frame ${device}`}><Renderer blocks={site.blocks} theme={site.theme} editorMode selectedBlockId={selectedId} onMoveBlock={moveCanvasBlock}/></div></main><aside className="inspector"><div className="pf-ai-panel"><div className="pf-ai-head"><strong>✦ AI Design Copilot</strong><select aria-label="AI mode" value={aiMode} onChange={e=>{setAiMode(e.target.value as 'mock'|'base44');setAiProposal(null);setAiError('')}}><option value="mock">Mock (sem API)</option><option value="base44">Base44 (real)</option></select></div><AICopilotTyping /><textarea aria-label="AI instruction" value={aiPrompt} onChange={e=>setAiPrompt(e.target.value)} placeholder="e.g. Create a features section"/><div className="pf-ai-actions"><button type="button" className="btn secondary" disabled={aiBusy||!aiPrompt.trim()} onClick={aiGenerate}>{aiBusy?'Generating...':'✦ Generate proposal'}</button>{aiProposal&&<button type="button" className="btn primary" onClick={aiApply}>Apply changes</button>}</div>{aiProposal&&<div className="pf-ai-preview"><strong>{aiProposal.summary} ({aiProposal.mode})</strong><pre style={{whiteSpace:'pre-wrap',overflowWrap:'anywhere',fontSize:'10px'}}>{JSON.stringify(aiProposal.operations,null,2)}</pre></div>}{aiError&&<p className={aiError.startsWith('Alteracoes aplicadas')?'pf-ai-success':'pf-ai-error'} role="status">{aiError}</p>}</div><div className="inspector-head"><Settings2 size={17}/><strong>Design inspector</strong></div><div className="pf7-inspector-tip"><strong>✦ Edit on the canvas</strong>Select a section, then use its floating arrows to reorder. Choose any text to adjust its content and colors here.</div>{selected&&activeField&&<span className="pf7-selected-path">{selected.kind} → {activeField}</span>}{selected?<div className="properties"><div className="pf5-section-inspector"><div className="inspector-kind">{selectedSchema?.name||selected.kind.toUpperCase()}</div><p className="pf5-hint">{selectedSchema?.description}</p><strong>Section layout</strong><div className="pf5-recipe-switch">{selectedSchema?.recipes.map(r=><button type="button" key={r.value} aria-pressed={(selected.recipe||'classic')===r.value} onClick={()=>patch({recipe:r.value})}>{r.label}</button>)}</div>{selectedSchema?.fields.map(f=><label className="pf5-field" data-pf-config={f.key} key={f.key}>{f.label}{f.kind==='textarea'||f.kind==='list'?<textarea rows={f.kind==='list'?5:3} value={f.kind==='list'?selected.items.join('\n'):String(selected[f.key]||'')} onChange={e=>patch(sanitizeBlockField(selected,f.key,e.target.value))}/>:f.kind==='select'?<select value={String(selected[f.key]||'left')} onChange={e=>patch(sanitizeBlockField(selected,f.key,e.target.value))}>{f.options?.map(o=><option key={o.value} value={o.value}>{o.label}</option>)}</select>:<input type={f.kind==='color'?'color':'text'} value={String(selected[f.key]||((f.kind==='color')?(f.key==='background'?site.theme.surface:site.theme.text):''))} onChange={e=>patch(sanitizeBlockField(selected,f.key,e.target.value))}/>}</label>)}</div><div className="pf16-color-panel"><div className="pf16-color-heading"><strong>Text colors</strong><small>Each color updates the selected section immediately.</small></div><div className="pf16-color-grid">{([{key:'titleColor',label:'Heading'},{key:'subtitleColor',label:'Subtitle'},{key:'bodyColor',label:'Body text'}] as const).map(item=><label key={item.key} className="pf16-color-control"><span>{item.label}</span><input type="color" aria-label={`${item.label} color`} value={selected[item.key]||selected.foreground||site.theme.text} onChange={e=>patch({[item.key]:e.target.value})}/><button type="button" title={`Use section color for ${item.label}`} onClick={()=>patch({[item.key]:undefined})}>Reset</button></label>)}</div><p>Section text color is the fallback. Heading, subtitle and body can override it independently.</p></div><label className="upload-label" data-pf-config="image"><Upload size={15}/> Upload image<input type="file" accept="image/*" onChange={e=>{const f=e.target.files?.[0];if(f)upload(f)}}/></label><label>Background color<input type="color" value={selected.background||site.theme.surface} onChange={e=>patch({background:e.target.value})}/></label><label>Text color<input type="color" value={selected.foreground||site.theme.text} onChange={e=>patch({foreground:e.target.value})}/></label><label>Alignment<select value={selected.align} onChange={e=>patch({align:e.target.value as Block['align']})}><option value="left">Left</option><option value="center">Center</option></select></label><div className="property-actions"><button className="btn secondary" onClick={()=>patch({enabled:!selected.enabled})}>{selected.enabled?<EyeOff size={15}/>:<Eye size={15}/>} {selected.enabled?'Hide':'Show'}</button><button className="btn secondary" onClick={()=>{const copy={...structuredClone(selected),id:uid()};apply(s=>({...s,blocks:[...s.blocks.slice(0,s.blocks.findIndex(b=>b.id===selected.id)+1),copy,...s.blocks.slice(s.blocks.findIndex(b=>b.id===selected.id)+1)]}));setSelectedId(copy.id)}}><Copy size={15}/> Duplicate</button><button className="btn danger" onClick={()=>{apply(s=>({...s,blocks:s.blocks.filter(b=>b.id!==selected.id)}));setSelectedId(site.blocks.find(b=>b.id!==selected.id)?.id||'')}}><Trash2 size={15}/> Delete</button></div></div>:<p className="muted pad">Select a block to edit.</p>}</aside></div></div>}
+import {requestCopilot,validateAIOperations,type AIResult} from '../lib/pageforge-ai';
+import {Renderer} from './Renderer';
+import {EditorToolbar} from './editor/EditorToolbar';
+import {BlocksPanel} from './editor/BlocksPanel';
+import {ThemePanel} from './editor/ThemePanel';
+import {SiteSettingsPanel} from './editor/SiteSettingsPanel';
+import {AICopilotPanel} from './editor/AICopilotPanel';
+import {BlockInspector} from './editor/BlockInspector';
+import type {AICopilotMode,EditorDevice,EditorTab,MobilePanel} from './editor/types';
+import '../styles/pages/pageforge-ai-v26.css';
+
+/** Editor shell: owns the site draft, undo history and AI proposal state,
+ * and composes the toolbar, side panels, canvas and inspector. */
+export function Editor({actor}:{actor:Actor}){
+ const {id}=useParams();
+ const navigate=useNavigate();
+ const original=useMemo(()=>{
+  const s=readStore();
+  const found=s.sites.find(x=>x.id===id);
+  return found&&s.workspaces.some(w=>w.id===found.workspaceId&&w.ownerId===actor.id)?found:null;
+ },[actor.id,id]);
+ const [site,setSite]=useState<Site|null>(original?structuredClone(original):null);
+ const [selectedId,setSelectedId]=useState(original?.blocks[0]?.id||'');
+ const [tab,setTab]=useState<EditorTab>('blocks');
+ const [device,setDevice]=useState<EditorDevice>('desktop');
+ const [pfPanel,setPfPanel]=useState<MobilePanel>('preview');
+ const [activeField,setActiveField]=useState<string>('');
+ const [history,setHistory]=useState<Site[]>([]);
+ const [future,setFuture]=useState<Site[]>([]);
+ const [dirty,setDirty]=useState(false);
+ const [aiPrompt,setAiPrompt]=useState('Transforme esta hero em uma empresa de robotica');
+ const [aiMode,setAiMode]=useState<AICopilotMode>('mock');
+ const [aiBusy,setAiBusy]=useState(false);
+ const [aiError,setAiError]=useState('');
+ const [aiProposal,setAiProposal]=useState<AIResult|null>(null);
+ const [chosenTemplate,setChosenTemplate]=useState<PremiumTemplate>('technology');
+
+ useEffect(()=>{
+  const listener=(e:KeyboardEvent)=>{
+   if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();document.getElementById('pf-save')?.click();}
+  };
+  window.addEventListener('keydown',listener);
+  return()=>window.removeEventListener('keydown',listener);
+ },[]);
+
+ if(!site)return <main className="empty"><h2>Page not found or access denied</h2><Link to="/dashboard">Back</Link></main>;
+ const selected=site.blocks.find(b=>b.id===selectedId);
+
+ const apply=(fn:(s:Site)=>Site)=>{
+  setHistory(h=>[...h.slice(-49),structuredClone(site)]);
+  setFuture([]);
+  setSite(fn(structuredClone(site)));
+  setDirty(true);
+ };
+ const patch=(updates:Partial<Block>)=>apply(s=>({...s,blocks:s.blocks.map(b=>b.id===selectedId?{...b,...updates}:b)}));
+ const addBlock=(kind:Block['kind'])=>{
+  const block=makeBlock(kind);
+  apply(s=>({...s,blocks:[...s.blocks,block]}));
+  setSelectedId(block.id);
+ };
+ const selectBlock=(blockId:string)=>{
+  setSelectedId(blockId);
+  if(window.matchMedia('(max-width:1023px)').matches)setPfPanel('design');
+ };
+ const selectFromCanvas=(e:React.MouseEvent<HTMLElement>)=>{
+  const target=e.target as HTMLElement;
+  const block=target.closest<HTMLElement>('[data-pf-block]');
+  if(!block||target.closest('[data-pf-canvas-control]'))return;
+  e.preventDefault();
+  e.stopPropagation();
+  const blockId=block.dataset.pfBlock||'';
+  const field=target.closest<HTMLElement>('[data-pf-field]')?.dataset.pfField||'';
+  setSelectedId(blockId);
+  setActiveField(field);
+  setTab('blocks');
+  window.requestAnimationFrame(()=>{
+   const panel=document.querySelector<HTMLElement>('.inspector');
+   const fieldInput=field?panel?.querySelector<HTMLElement>(`[data-pf-config="${field}"]`):null;
+   const focusTarget=fieldInput?.querySelector<HTMLElement>('input,textarea,select')||fieldInput;
+   focusTarget?.scrollIntoView({block:'nearest',behavior:'smooth'});
+   focusTarget?.classList.add('pf7-field-target');
+   window.setTimeout(()=>focusTarget?.classList.remove('pf7-field-target'),1600);
+  });
+ };
+ const aiGenerate=async()=>{
+  setAiBusy(true);
+  setAiError('');
+  setAiProposal(null);
+  try{
+   const result=await requestCopilot({instruction:aiPrompt,selectedId,blocks:site.blocks},aiMode);
+   setAiProposal(result);
+  }catch(e){
+   setAiError(e instanceof Error?e.message:String(e));
+  }finally{
+   setAiBusy(false);
+  }
+ };
+ const aiApply=()=>{
+  if(!aiProposal)return;
+  try{
+   const ops=validateAIOperations(aiProposal.operations,site.blocks);
+   let firstAdded='';
+   apply(s=>{
+    let blocks=[...s.blocks];
+    for(const op of ops){
+     if(op.type==='update_block'){blocks=blocks.map(b=>b.id===op.blockId?{...b,...op.changes}:b);}
+     else if(op.type==='add_block'){
+      const block={...makeBlock(op.kind as Block['kind']),...op.changes};
+      const index=blocks.findIndex(x=>x.id===op.afterId);
+      blocks.splice(index<0?blocks.length:index+1,0,block);
+      if(!firstAdded)firstAdded=block.id;
+     }else if(op.type==='move_block'){
+      const index=blocks.findIndex(b=>b.id===op.blockId);
+      const to=index+(op.direction==='up'?-1:1);
+      if(index>=0&&to>=0&&to<blocks.length){
+       const [moved]=blocks.splice(index,1);
+       blocks.splice(to,0,moved);
+      }
+     }
+    }
+    return {...s,blocks};
+   });
+   if(firstAdded)setSelectedId(firstAdded);
+   setAiProposal(null);
+   setAiError('Alteracoes aplicadas. Use Undo para desfazer.');
+  }catch(e){
+   setAiError(e instanceof Error?e.message:String(e));
+  }
+ };
+ const save=(publish=false)=>{
+  try{
+   const updated:Site={...site,version:site.version+(publish?1:0),published:publish||site.published,publishedSnapshot:publish?null:site.publishedSnapshot};
+   if(publish)updated.publishedSnapshot=snapshot(updated);
+   const saved=saveSite(actor,updated);
+   localStorage.removeItem(`pageforge-preview-${site.id}`);
+   setSite(saved);
+   setDirty(false);
+   alert(publish?'Page published!':'Draft saved!');
+  }catch(e){
+   alert(String(e));
+  }
+ };
+ const undo=()=>{
+  if(!history.length)return;
+  setFuture(f=>[site,...f]);
+  setSite(history.at(-1)!);
+  setHistory(h=>h.slice(0,-1));
+  setDirty(true);
+ };
+ const redo=()=>{
+  if(!future.length)return;
+  setHistory(h=>[...h,site]);
+  setSite(future[0]);
+  setFuture(f=>f.slice(1));
+  setDirty(true);
+ };
+ const moveCanvasBlock=(blockId:string,direction:-1|1)=>{
+  const visible=site.blocks.filter(b=>b.enabled);
+  const current=visible.findIndex(b=>b.id===blockId);
+  const neighbor=visible[current+direction];
+  if(!neighbor)return;
+  const index=site.blocks.findIndex(b=>b.id===blockId);
+  const next=site.blocks.findIndex(b=>b.id===neighbor.id);
+  apply(s=>({...s,blocks:arrayMove(s.blocks,index,next)}));
+  setSelectedId(blockId);
+  setActiveField('');
+ };
+ const upload=(file:File)=>{
+  if(file.size>2_000_000){alert('In local mode, images must be no larger than 2 MB.');return;}
+  const reader=new FileReader();
+  reader.onload=()=>patch({image:String(reader.result)});
+  reader.readAsDataURL(file);
+ };
+ const exportJson=()=>downloadFile(`${site.slug}.json`,JSON.stringify(site,null,2),'application/json');
+ const exportHtml=()=>downloadFile(`${site.slug}.html`,exportStaticHtml(site),'text/html');
+ const openPreview=()=>{
+  localStorage.setItem(`pageforge-preview-${site.id}`,JSON.stringify({actorId:actor.id,expires:Date.now()+30*60*1000,site}));
+  window.open(`/preview/${site.id}`,"_blank","noopener,noreferrer");
+ };
+
+ return <div className="editor">
+  <EditorToolbar site={site} dirty={dirty} canUndo={!!history.length} canRedo={!!future.length} device={device} onDevice={setDevice} onUndo={undo} onRedo={redo} onSave={()=>save()} onPublish={()=>save(true)} onExportJson={exportJson} onExportHtml={exportHtml} onOpenPreview={openPreview}/>
+  <div className="editor-body" data-pf-panel={pfPanel}>
+   <div className="pf-editor-mobile-tabs" role="group" aria-label="Editor panels"><button type="button" aria-pressed={pfPanel==='preview'} onClick={()=>setPfPanel('preview')}>Preview</button><button type="button" aria-pressed={pfPanel==='blocks'} onClick={()=>setPfPanel('blocks')}>Sections</button><button type="button" aria-pressed={pfPanel==='design'} onClick={()=>setPfPanel('design')}>Design & AI</button></div>
+   <aside className="editor-sidebar">
+    <div className="editor-tabs"><button className={tab==='blocks'?'active':''} onClick={()=>setTab('blocks')}>Blocks</button><button className={tab==='theme'?'active':''} onClick={()=>setTab('theme')}>Style</button><button className={tab==='settings'?'active':''} onClick={()=>setTab('settings')}>Site</button></div>
+    {tab==='blocks'&&<BlocksPanel site={site} selectedId={selectedId} apply={apply} onSelectBlock={selectBlock} onAddBlock={addBlock}/>}
+    {tab==='theme'&&<ThemePanel site={site} apply={apply} chosenTemplate={chosenTemplate} onChooseTemplate={setChosenTemplate}/>}
+    {tab==='settings'&&<SiteSettingsPanel site={site} apply={apply} onBack={()=>navigate('/dashboard')}/>}
+   </aside>
+   <main className="editor-stage" onClickCapture={selectFromCanvas} aria-label="Visual editor: click text, images, and blocks to configure them">
+    <div className={`canvas-frame ${device}`}><Renderer blocks={site.blocks} theme={site.theme} editorMode selectedBlockId={selectedId} onMoveBlock={moveCanvasBlock}/></div>
+   </main>
+   <aside className="inspector">
+    <AICopilotPanel mode={aiMode} onModeChange={mode=>{setAiMode(mode);setAiProposal(null);setAiError('');}} prompt={aiPrompt} onPromptChange={setAiPrompt} busy={aiBusy} proposal={aiProposal} error={aiError} onGenerate={aiGenerate} onApply={aiApply}/>
+    <div className="inspector-head"><Settings2 size={17}/><strong>Design inspector</strong></div>
+    <div className="pf7-inspector-tip"><strong>✦ Edit on the canvas</strong>Select a section, then use its floating arrows to reorder. Choose any text to adjust its content and colors here.</div>
+    {selected&&activeField&&<span className="pf7-selected-path">{selected.kind} → {activeField}</span>}
+    {selected?<BlockInspector site={site} selected={selected} patch={patch} apply={apply} upload={upload} setSelectedId={setSelectedId}/>:<p className="muted pad">Select a block to edit.</p>}
+   </aside>
+  </div>
+ </div>;
+}
