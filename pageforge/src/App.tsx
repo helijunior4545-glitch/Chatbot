@@ -111,6 +111,7 @@ import './styles/pages/dashboard-font-compact-v25-1.css';
 import './styles/pages/editor-font-compact-v25-2.css';
 import './styles/pages/theme-modal-refinement-v26-1.css';
 import './styles/pages/theme-modal-panoramic-v26-2.css';
+import './styles/pages/pf-responsive-v1.css';
 
 function PublicPage(){const {slug}=useParams();const store=useStore();const match=publicSite(store,slug||'');useEffect(()=>{if(match)addEvent(match.site.id,'page_view');/* Track once per navigation, not every store mutation. */},[slug]);if(!match)return <main className="empty"><h1>404</h1><p>Page not found or not published.</p><Link to="/">Back</Link></main>;return <RenderSnapshot site={match.site} snapshot={match.snapshot}/>}
 
