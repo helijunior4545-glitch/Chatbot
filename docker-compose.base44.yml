@@ -1,0 +1,40 @@
+# Base44 dev environment for PageForge Studio.
+# The repository root holds a single project: `pageforge/` (Vite + React SPA).
+# The app is client-only (local data provider = browser localStorage), so no
+# database, API or external credential is required to run it.
+services:
+  web:
+    image: node:22
+    working_dir: /app
+    volumes:
+      - ./pageforge:/app
+    # Dependencies live in the bind-mounted directory and are installed from the
+    # lockfile on every start, so edits made in the sandbox are always served.
+    command:
+      - sh
+      - -ec
+      - npm ci --no-audit --no-fund && exec npm run dev -- --host 0.0.0.0 --port 5173 --strictPort
+    environment:
+      # Platform-provided dev-server host allowlist (Vite >= 6.1 appends it to
+      # server.allowedHosts) so the preview proxy host is accepted.
+      - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS
+      # Set by the platform to "1" in the sandbox; passed through only.
+      - BASE44_PREVIEW_MODE
+    ports:
+      - "3000:5173"
+    labels:
+      base44.project: "PageForge Studio"
+      base44.kind: "web"
+      base44.port: "3000"
+    healthcheck:
+      # node:22 ships node + global fetch; no curl/wget in the slim images.
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:5173/').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 120s
+    restart: on-failure
