@@ -7,7 +7,7 @@ import type {Actor,Block,Site} from '../lib/types';
 import {makeBlock,snapshot} from '../lib/factory';
 import {readStore,saveSite} from '../lib/local';
 import {downloadFile,exportStaticHtml} from '../lib/export';
-import {requestCopilot,validateAIOperations,type AIResult} from '../lib/pageforge-ai';
+import {isRemoteCopilotConfigured,requestCopilot,validateAIOperations,type AIResult} from '../lib/pageforge-ai';
 import {Renderer} from './Renderer';
 import {EditorToolbar} from './editor/EditorToolbar';
 import {BlocksPanel} from './editor/BlocksPanel';
@@ -38,7 +38,7 @@ export function Editor({actor}:{actor:Actor}){
  const [future,setFuture]=useState<Site[]>([]);
  const [dirty,setDirty]=useState(false);
  const [aiPrompt,setAiPrompt]=useState('Transforme esta hero em uma empresa de robotica');
- const [aiMode,setAiMode]=useState<AICopilotMode>('mock');
+ const [aiMode,setAiMode]=useState<AICopilotMode>(isRemoteCopilotConfigured()?'base44':'mock');
  const [aiBusy,setAiBusy]=useState(false);
  const [aiError,setAiError]=useState('');
  const [aiProposal,setAiProposal]=useState<AIResult|null>(null);

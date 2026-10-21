@@ -4,8 +4,9 @@
 #
 #   docker compose -f docker-compose.base44.yml up -d --build
 #
-# The single-page app stores its data in the browser (localStorage) and uses a
-# built-in mock AI mode, so no database or external credential is required.
+# The single-page app stores its data in the browser (localStorage). The AI
+# copilot works from a provider key (secret AI_API_KEY); without one the editor
+# keeps its built-in mock mode and the `api` service answers 503.
 services:
   web:
     image: node:22-slim
@@ -25,6 +26,12 @@ services:
       - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS
       # Local demo data provider (the app's default; no external service involved).
       - VITE_DATA_PROVIDER=local
+      # AI copilot route: proxied by Vite to the `api` service (same origin).
+      - VITE_PAGEFORGE_AI_ENDPOINT=/api/copilot
+      - AI_PROXY_TARGET=http://api:8787
+    depends_on:
+      api:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
       interval: 15s
@@ -36,6 +43,32 @@ services:
       base44.project: "PageForge Studio"
       base44.kind: "web"
       base44.port: "3000"
+
+  # AI copilot backend: turns the editor prompt into site operations through an
+  # OpenAI-compatible provider. AI_API_KEY comes from the platform secrets file
+  # (never from this compose file); without it the API answers 503 and the
+  # editor falls back to its built-in mock mode.
+  api:
+    image: node:22-slim
+    working_dir: /app
+    command: ["node", "server/copilot.mjs"]
+    volumes:
+      - ./pageforge:/app
+    env_file:
+      - ./.env.base44-defaults
+      - /run/base44/app.env
+    environment:
+      - PORT=8787
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8787/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    restart: on-failure
+    labels:
+      base44.project: "PageForge Studio"
+      base44.kind: "api"
 
 volumes:
   pageforge_node_modules:

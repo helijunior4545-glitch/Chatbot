@@ -7,7 +7,7 @@ type Props={mode:AICopilotMode;onModeChange:(mode:AICopilotMode)=>void;prompt:st
 /** AI Design Copilot panel: prompt, proposed operations and apply/undo feedback. */
 export function AICopilotPanel({mode,onModeChange,prompt,onPromptChange,busy,proposal,error,onGenerate,onApply}:Props){
  return <div className="pf-ai-panel">
-  <div className="pf-ai-head"><strong>✦ AI Design Copilot</strong><select aria-label="AI mode" value={mode} onChange={e=>onModeChange(e.target.value as AICopilotMode)}><option value="mock">Mock (sem API)</option><option value="base44">Base44 (real)</option></select></div>
+  <div className="pf-ai-head"><strong>✦ AI Design Copilot</strong><select aria-label="AI mode" value={mode} onChange={e=>onModeChange(e.target.value as AICopilotMode)}><option value="mock">Mock (sem API)</option><option value="base44">IA real (API)</option></select></div>
   <AICopilotTyping />
   <textarea aria-label="AI instruction" value={prompt} onChange={e=>onPromptChange(e.target.value)} placeholder="e.g. Create a features section"/>
   <div className="pf-ai-actions"><button type="button" className="btn secondary" disabled={busy||!prompt.trim()} onClick={onGenerate}>{busy?'Generating...':'✦ Generate proposal'}</button>{proposal&&<button type="button" className="btn primary" onClick={onApply}>Apply changes</button>}</div>

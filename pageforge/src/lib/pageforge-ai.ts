@@ -62,6 +62,8 @@ export function mockCopilot(req:AIRequest):AIResult{
  }
  return {operations:validateAIOperations(operations,req.blocks),summary,mode:'mock'};
 }
+/** True when an AI backend endpoint is configured for this build. */
+export function isRemoteCopilotConfigured(){return Boolean((import.meta.env.VITE_PAGEFORGE_AI_ENDPOINT||'').trim());}
 export async function requestCopilot(req:AIRequest,mode:'mock'|'base44'):Promise<AIResult>{
  if(mode==='mock')return mockCopilot(req);
  const endpoint=(import.meta.env.VITE_PAGEFORGE_AI_ENDPOINT||'').trim();
@@ -69,7 +71,14 @@ export async function requestCopilot(req:AIRequest,mode:'mock'|'base44'):Promise
  const url=new URL(endpoint,window.location.origin);
  if(url.protocol!=='https:'&&url.hostname!=='localhost'&&url.hostname!=='127.0.0.1')throw new Error('Endpoint deve usar HTTPS.');
  const response=await fetch(url.toString(),{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify(req)});
- if(!response.ok)throw new Error('Backend Base44 retornou HTTP '+response.status);
+ if(!response.ok){
+  let message='Backend de IA retornou HTTP '+response.status;
+  try{
+   const body=await response.json() as {error?:unknown};
+   if(body&&typeof body.error==='string'&&body.error.trim())message=body.error.trim();
+  }catch{/* resposta sem corpo JSON */}
+  throw new Error(message);
+ }
  const data:unknown=await response.json();
  if(!data||typeof data!=='object')throw new Error('Resposta Base44 invalida.');
  const result=data as Record<string,unknown>;
