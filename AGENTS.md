@@ -46,6 +46,19 @@ docker compose -f docker-compose.base44.yml logs -f web
 - The optional Base44 integration (`pageforge/src/integrations/base44.ts`) needs
   `VITE_BASE44_APP_ID` plus provisioned `PFWorkspace`/`PFSite`/`PFLead`/`PFEvent` entities.
 
+## Deploy (produção)
+
+- `Dockerfile` na raiz: build do Vite + `pageforge/server/production.mjs` (arquivos
+  estáticos de `dist/` com fallback do SPA + `/api/copilot` + `/healthz`) na mesma porta
+  (`PORT`, padrão 3000). Detalhes em `pageforge/DEPLOY.md`.
+- `server/copilot.mjs` exporta `createCopilotHandler()`; rodar o arquivo direto (como o
+  compose de dev faz) continua subindo o servidor isolado na porta 8787.
+- Smoke test da imagem: `docker build -t pageforge . && docker run -p 3100:3000 -e
+  AI_API_KEY=... pageforge`, depois `curl -s localhost:3100/healthz`. Use `-e`, nunca
+  `--env-file /run/base44/app.env` — o valor desse arquivo vem entre aspas e o Docker não
+  as remove, resultando em 401 do provedor.
+- Vercel/Netlify não executam esse servidor Node: só o site estático, sem o copiloto.
+
 ## Verifying
 
 - `curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/` → 200, and

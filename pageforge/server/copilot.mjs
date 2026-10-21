@@ -13,6 +13,7 @@
  *   PORT        (8787 por padrão)
  */
 import { createServer } from 'node:http';
+import { pathToFileURL } from 'node:url';
 
 const PORT = Number(process.env.PORT || 8787);
 const API_KEY = (process.env.AI_API_KEY || '').trim();
@@ -206,7 +207,9 @@ function readBody(req) {
   });
 }
 
-const server = createServer(async (req, res) => {
+/** Request listener do copiloto (usado pelo servidor de dev e pelo de produção). */
+export function createCopilotHandler() {
+  return async (req, res) => {
   const url = new URL(req.url || '/', 'http://localhost');
 
   if (req.method === 'GET' && url.pathname === '/healthz') {
@@ -236,8 +239,18 @@ const server = createServer(async (req, res) => {
     console.error('[copilot]', status, error?.message || error);
     return send(res, status, { error: error?.message || 'Falha ao gerar a proposta.' });
   }
-});
+  };
+}
 
-server.listen(PORT, '0.0.0.0', () => {
-  console.log(`[copilot] listening on :${PORT} (model=${MODEL}, configured=${Boolean(API_KEY)})`);
-});
+export function startCopilotServer(port = PORT) {
+  const server = createServer(createCopilotHandler());
+  server.listen(port, '0.0.0.0', () => {
+    console.log(`[copilot] listening on :${port} (model=${MODEL}, configured=${Boolean(API_KEY)})`);
+  });
+  return server;
+}
+
+// Executado diretamente (`node server/copilot.mjs`), inclusive pelo compose de dev.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  startCopilotServer();
+}
