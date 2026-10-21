@@ -1,0 +1,144 @@
+import {useEffect, useState} from 'react';
+import {BrowserRouter, Link, Route, Routes, useParams} from 'react-router-dom';
+import type {Actor, Site} from './lib/types';
+import {addEvent} from './lib/local';
+import {publicSite} from './lib/security';
+import {Renderer, RenderSnapshot} from './components/Renderer';
+import {Editor} from './components/Editor';
+import {useStore} from './lib/useStore';
+import {ACTOR_KEY} from './lib/constants';
+import {findLocalActor} from './lib/localAccounts';
+import {Login} from './pages/Login';
+import {Dashboard} from './pages/Dashboard';
+import {Leads} from './pages/Leads';
+import {Analytics} from './pages/Analytics';
+import './styles/v10/global/foundation-001.css';
+import './styles/v10/shared/foundation-002.css';
+import './styles/v10/shell/foundation-003.css';
+import './styles/v10/shared/foundation-004.css';
+import './styles/v10/shell/foundation-005.css';
+import './styles/v10/shared/foundation-006.css';
+import './styles/v10/dashboard/foundation-007.css';
+import './styles/v10/shared/foundation-008.css';
+import './styles/v10/dashboard/foundation-009.css';
+import './styles/v10/shared/foundation-010.css';
+import './styles/v10/dashboard/foundation-011.css';
+import './styles/v10/shared/foundation-012.css';
+import './styles/v10/dashboard/foundation-013.css';
+import './styles/v10/shared/foundation-014.css';
+import './styles/v10/dashboard/foundation-015.css';
+import './styles/v10/shared/foundation-016.css';
+import './styles/v10/editor/foundation-017.css';
+import './styles/v10/shared/foundation-018.css';
+import './styles/v10/login/foundation-019.css';
+import './styles/v10/shared/foundation-020.css';
+import './styles/v10/login/foundation-021.css';
+import './styles/v10/shared/foundation-022.css';
+import './styles/v10/editor/foundation-023.css';
+import './styles/v10/shared/foundation-024.css';
+import './styles/v10/editor/foundation-025.css';
+import './styles/v10/shared/foundation-026.css';
+import './styles/v10/editor/foundation-027.css';
+import './styles/v10/shared/foundation-028.css';
+import './styles/v10/renderer/foundation-029.css';
+import './styles/v10/shared/foundation-030.css';
+import './styles/v10/renderer/foundation-031.css';
+import './styles/v10/shared/foundation-032.css';
+import './styles/v10/renderer/foundation-033.css';
+import './styles/v10/shared/foundation-034.css';
+import './styles/v10/leads/foundation-035.css';
+import './styles/v10/shared/foundation-036.css';
+import './styles/v10/global/foundation-037.css';
+import './styles/v10/shared/foundation-038.css';
+import './styles/v10/shell/foundation-039.css';
+import './styles/v10/shared/foundation-040.css';
+import './styles/v10/dashboard/foundation-041.css';
+import './styles/v10/shared/foundation-042.css';
+import './styles/v10/login/foundation-043.css';
+import './styles/v10/editor/foundation-044.css';
+import './styles/v10/shared/foundation-045.css';
+import './styles/v10/renderer/foundation-046.css';
+import './styles/v10/shared/foundation-047.css';
+import './styles/v10/renderer/foundation-048.css';
+import './styles/v10/shared/foundation-049.css';
+import './styles/v10/renderer/foundation-050.css';
+import './styles/v10/shared/foundation-051.css';
+import './styles/v10/renderer/foundation-052.css';
+import './styles/v10/shared/foundation-053.css';
+import './styles/v10/renderer/foundation-054.css';
+import './styles/v10/shared/foundation-055.css';
+import './styles/renderer/design-engine.css';
+import './styles/renderer/premium-templates.css';
+import './styles/editor/pro-editor.css';
+import './styles/renderer/theme-families.css';
+import './styles/v10/global/visual-inspector-001.css';
+import './styles/v10/editor/visual-inspector-002.css';
+import './styles/v10/shared/visual-inspector-003.css';
+import './styles/v10/editor/visual-inspector-004.css';
+import './styles/v10/shared/visual-inspector-005.css';
+import './styles/v10/shell/visual-inspector-006.css';
+import './styles/v10/shared/visual-inspector-007.css';
+import './styles/v10/dashboard/visual-inspector-008.css';
+import './styles/v10/leads/visual-inspector-009.css';
+import './styles/v10/login/visual-inspector-010.css';
+import './styles/v10/shared/visual-inspector-011.css';
+import './styles/v10/renderer/visual-inspector-012.css';
+import './styles/v10/shared/visual-inspector-013.css';
+import './styles/v10/editor/visual-inspector-014.css';
+import './styles/v10/shared/visual-inspector-015.css';
+import './styles/v10/global/mobile-motion-001.css';
+import './styles/v10/shared/mobile-motion-002.css';
+import './styles/v10/dashboard/mobile-motion-003.css';
+import './styles/v10/shared/mobile-motion-004.css';
+import './styles/v10/dashboard/mobile-motion-005.css';
+import './styles/v10/shared/mobile-motion-006.css';
+import './styles/v10/dashboard/mobile-motion-007.css';
+import './styles/v10/shared/mobile-motion-008.css';
+import './styles/v10/editor/mobile-motion-009.css';
+import './styles/v10/shared/mobile-motion-010.css';
+import './styles/v10/renderer/mobile-motion-011.css';
+import './styles/v10/shared/mobile-motion-012.css';
+import './styles/v10/dashboard/mobile-motion-013.css';
+import './styles/v10/shared/mobile-motion-014.css';
+import './styles/pages/dashboard.css';
+import './styles/pages/readability-v16-1.css';
+import './styles/pages/login.css';
+import './styles/pages/register-v18.css';
+import './styles/pages/editorial-engineering-v19.css';
+import './styles/pages/dashboard-hero-v19-1.css';
+import './styles/pages/dashboard-readability-v20-1.css';
+import './styles/pages/dashboard-font-compact-v25-1.css';
+import './styles/pages/editor-font-compact-v25-2.css';
+import './styles/pages/theme-modal-refinement-v26-1.css';
+import './styles/pages/theme-modal-panoramic-v26-2.css';
+
+function PublicPage(){const {slug}=useParams();const store=useStore();const match=publicSite(store,slug||'');useEffect(()=>{if(match)addEvent(match.site.id,'page_view');/* Track once per navigation, not every store mutation. */},[slug]);if(!match)return <main className="empty"><h1>404</h1><p>Page not found or not published.</p><Link to="/">Back</Link></main>;return <RenderSnapshot site={match.site} snapshot={match.snapshot}/>}
+
+// Independent preview: draft accessible only to the local session owner.
+function DraftPreview({actor}:{actor:Actor}){
+  const {id}=useParams();
+  const store=useStore();
+  const site=store.sites.find(s=>s.id===id);
+  const owned=site&&store.workspaces.some(w=>w.id===site.workspaceId&&w.ownerId===actor.id);
+  const [draft]=useState(()=>{
+    try{
+      const raw=localStorage.getItem(`pageforge-preview-${id}`);
+      if(!raw)return null;
+      const envelope:unknown=JSON.parse(raw);
+      if(!envelope||typeof envelope!=='object'||!('actorId' in envelope)||!('expires' in envelope)||!('site' in envelope))return null;
+      const entry=envelope as {actorId:string;expires:number;site:unknown};
+      if(entry.actorId!==actor.id||Date.now()>entry.expires)return null;
+      const parsed:unknown=entry.site;
+      if(parsed&&typeof parsed==='object'&&'id' in parsed&&'workspaceId' in parsed&&'blocks' in parsed&&'theme' in parsed){
+        const s=parsed as Site;
+        return s.id===id?s:null;
+      }
+    }catch{}return null;
+  });
+  if(!site||!owned)return <main className="empty"><h1>404</h1><p>Draft not found or access denied.</p><Link to="/dashboard">Back</Link></main>;
+  const current=draft&&draft.workspaceId===site.workspaceId?draft:site;
+  return <div className="pf-full-preview"><Renderer blocks={current.blocks} theme={current.theme}/></div>;
+}
+
+function Router(){const [actor,setActor]=useState<Actor|null>(()=>findLocalActor(localStorage.getItem(ACTOR_KEY)));const login=(a:Actor)=>{localStorage.setItem(ACTOR_KEY,a.id);setActor(a);location.href='/dashboard'};return <Routes><Route path="/p/:slug" element={<PublicPage/>}/><Route path="/preview/:id" element={actor?<DraftPreview actor={actor}/>:<Login onLogin={login}/>}/><Route path="/login" element={<Login onLogin={login}/>}/><Route path="/dashboard" element={actor?<Dashboard actor={actor}/>:<Login onLogin={login}/>}/><Route path="/editor/:id" element={actor?<Editor actor={actor}/>:<Login onLogin={login}/>}/><Route path="/leads" element={actor?<Leads actor={actor}/>:<Login onLogin={login}/>}/><Route path="/analytics" element={actor?<Analytics actor={actor}/>:<Login onLogin={login}/>}/><Route path="*" element={actor?<Dashboard actor={actor}/>:<Login onLogin={login}/>}/></Routes>}
+export default function App(){return <BrowserRouter><Router/></BrowserRouter>}

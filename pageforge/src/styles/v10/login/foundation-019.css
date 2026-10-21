@@ -1,0 +1,1 @@
+.login-page{min-height:100vh;display:grid;grid-template-columns:1.05fr 1fr}.login-hero{padding:clamp(50px,8vw,125px);background:radial-gradient(circle at 30% 70%,#5a36ac55,transparent 55%),linear-gradient(135deg,#121427,#242044);display:flex;justify-content:center;align-items:start;flex-direction:column;overflow:hidden}

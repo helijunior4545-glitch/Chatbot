@@ -1,0 +1,9 @@
+
+.pf4-template-option{position:relative;min-width:0!important;width:100%!important;min-height:210px;display:flex!important;flex-direction:column!important;gap:9px;align-items:stretch;text-align:left;overflow:hidden;border-radius:15px!important;transition:transform var(--pf8-normal) var(--pf8-ease),box-shadow var(--pf8-normal),border-color var(--pf8-fast)!important}
+.pf4-template-option .pf4-template-swatch{width:100%!important;height:128px!important;min-height:128px;display:block;background-size:cover!important;background-position:center!important;transition:transform var(--pf8-slow) var(--pf8-ease)}
+.pf4-template-option strong,.pf4-template-option small{display:block;max-width:100%;overflow-wrap:anywhere}.pf4-template-option[aria-pressed="true"]{outline:2px solid #a49bff!important;outline-offset:1px;box-shadow:0 0 0 5px #8174f321!important}
+.pf4-template-option:hover{transform:translateY(-3px)}.pf4-template-option:hover .pf4-template-swatch{transform:scale(1.035)}
+@keyframes pf8-dialog-in{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+/* Entire studio polish and interactions */
+.app-nav a,.site-card,.new-site-card,.metric,.editor .layer,.iconbtn,.btn,.pf4-template-option{will-change:auto}
+.app-nav a,.editor .layer{transition:background var(--pf8-fast),border-color var(--pf8-fast),color var(--pf8-fast),transform var(--pf8-normal) var(--pf8-ease)!important}

@@ -1,0 +1,13 @@
+/* PAGEFORGE V25.1 — Somente o dashboard central; nao afeta sidebar, editor ou sites criados. */
+.pf12-shell .pf-dashboard{font-size:14px!important;line-height:1.48}
+.pf12-shell .pf-dashboard .pf-dash-hero h1{font-size:clamp(33px,3.6vw,56px)!important;line-height:1.08!important}
+.pf12-shell .pf-dashboard .pf-dash-hero p{font-size:14px!important;line-height:1.6!important}
+.pf12-shell .pf-dashboard .pf-dash-section-heading h2{font-size:clamp(23px,2.25vw,31px)!important}
+.pf12-shell .pf-dashboard .pf-dash-section-heading h2>span:not(.pf-dash-period){font-size:11px!important}
+.pf12-shell .pf-dashboard .pf-dash-card-top h3{font-size:16px!important}
+.pf12-shell .pf-dashboard .pf-dash-workspace-label strong{font-size:15px!important}
+.pf12-shell .pf-dashboard :is(.pf-dash-kicker,.pf-dash-workspace-label small,.pf-dash-breadcrumb,.pf-dash-breadcrumb-tag){font-size:11px!important}
+.pf12-shell .pf-dashboard :is(.pf-dash-stat-label,.pf-dash-section-heading p,.pf-dash-card-top p,.pf-dash-card-meta,.pf-dash-card-footer,.pf-dash-template-bottom small,.pf-dash-chooser-label small,.pf-dash-dialog-head p,.pf-dash-field,.pf-dash-error,.pf-dash-status,.pf-dash-sort select,.pf-dash-filter button,.pf-dash-template-bottom strong,.pf-dash-chooser-label strong){font-size:12px!important;line-height:1.45!important}
+.pf12-shell .pf-dashboard :is(.pf-dash-ghost,.pf-dash-primary,.pf-dash-outline,.pf-dash-edit,.pf-dash-new-link,.pf-dash-danger,.pf-dash-search input){font-size:13px!important}
+.pf12-shell .pf-dashboard :is(button,input,select,textarea){line-height:1.4}
+@media(max-width:650px){.pf12-shell .pf-dashboard .pf-dash-hero h1{font-size:clamp(30px,7.5vw,41px)!important}}

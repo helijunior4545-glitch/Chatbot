@@ -1,0 +1,1 @@
+.site-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.site-card{background:#131622;border:1px solid #2c2e40;border-radius:17px;overflow:hidden}.site-thumb{height:170px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px}.site-thumb>span{font-size:55px;color:#c3b8ff}

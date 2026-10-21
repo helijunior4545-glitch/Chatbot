@@ -1,0 +1,3 @@
+
+.editor .inspector,.editor .editor-sidebar{min-width:0}.editor .properties{min-width:0}.editor .properties input,.editor .properties select,.editor .properties textarea{max-width:100%;font-size:16px}
+.editor-stage{overscroll-behavior:contain}.canvas-frame{min-width:0}

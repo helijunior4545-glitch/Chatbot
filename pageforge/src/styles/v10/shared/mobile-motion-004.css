@@ -1,0 +1,4 @@
+
+.modal .pf8-modal-footer{flex:0 0 auto;position:relative;display:flex;justify-content:flex-end;gap:10px;align-items:center;flex-wrap:wrap;padding:14px clamp(18px,3vw,32px)!important;border-top:1px solid #ffffff21;background:#192234;box-shadow:0 -10px 24px #0002}
+.modal .pf8-modal-footer .btn{min-height:44px;white-space:nowrap}.modal .pf8-modal-scroll>h2{margin:8px 0 22px!important;font-size:clamp(1.4rem,3vw,2.25rem);line-height:1.1;letter-spacing:-.045em}
+.pf4-template-chooser{min-width:0}

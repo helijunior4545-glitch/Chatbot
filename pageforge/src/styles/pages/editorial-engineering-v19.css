@@ -1,0 +1,61 @@
+/* PageForge V19 — Editorial Engineering / APPLICATION CHROME ONLY
+   Graphite #101213 | Surface #1B1E1F | Ivory #F3F1EA | Signal #D9FF66
+   Never style .pf-site, .render-root, preview frames or published sites.
+*/
+:root{--pf19-bg:#101213;--pf19-surface:#1b1e1f;--pf19-raised:#252a29;--pf19-ink:#f3f1ea;--pf19-muted:#a8aeaa;--pf19-signal:#d9ff66;--pf19-line:#414a45;--pf19-focus:#d9ff66}
+/* Dashboard, navigation and dialogs */
+.pf-studio,.app-shell.pf-studio,.pf-dash,.dashboard,.pf-dash-page{--pf-bg:var(--pf19-bg);--pf-surface:var(--pf19-surface);--pf-border:rgba(215,230,212,.16);--pf-text:var(--pf19-ink);--pf-muted:var(--pf19-muted);background:var(--pf19-bg)!important;color:var(--pf19-ink)}
+.pf-studio .pf-main,.pf-studio .app-main,.pf-studio .pf-sidebar,.pf-studio .app-nav,.pf-studio .pf-topbar,.pf-dash,.pf-dash-shell,.pf-dash-main{background:var(--pf19-bg)!important;color:var(--pf19-ink)}
+.pf-studio .pf-sidebar,.pf-studio .app-nav{background:linear-gradient(170deg,#1b1e1f,#101213)!important;border-right:1px solid var(--pf19-line)!important}
+.pf-studio .pf-topbar,.pf-studio .app-nav nav a,.pf-studio .pf-divider,.pf-dash .pf-dash-kicker{color:var(--pf19-muted)!important}
+.pf-studio .brand-symbol,.pf-studio .dot,.pf-dash .pf-dash-period,.pf-dash .pf-dash-kicker,.pf-dash .pf-dash-hero-copy em{color:var(--pf19-signal)!important;filter:none!important}
+.pf-studio .page-top.pf-hero,.pf-dash .pf-dash-hero,.pf-dash-hero{background:radial-gradient(ellipse at 85% 15%,rgba(217,255,102,.13),transparent 45%),linear-gradient(125deg,#1b1e1f,#101213)!important;border-color:var(--pf19-line)!important;box-shadow:0 20px 65px #0005!important}
+.pf-studio .pf-hero::after{border-color:#d9ff6640!important;box-shadow:0 0 0 42px #d9ff6609,0 0 0 90px #d9ff6605!important}
+.pf-studio .pf-hero .eyebrow,.pf-dash .eyebrow,.pf-dash .pf-dash-kicker{color:var(--pf19-signal)!important}
+.pf-studio .metric,.pf-studio .site-card,.pf-studio .new-site-card,.pf-dash-card,.pf-dash-metric,.pf-dash-stat,.pf-dash .pf-dash-template-tile,.pf-dash .pf-dash-template-card{background:var(--pf19-surface)!important;border-color:var(--pf19-line)!important;color:var(--pf19-ink)!important}
+.pf-studio .metric>span,.pf-studio .pf-metrics .metric>span{background:#d9ff6617!important;color:var(--pf19-signal)!important}
+.pf-studio .metric small,.pf-studio .site-card p,.pf-dash-card p,.pf-dash-card-meta,.pf-dash .pf-dash-hero-copy p{color:var(--pf19-muted)!important}
+.pf-studio .btn.primary,.pf-dash .pf-dash-primary,.pf-dash-primary,.pf-dash-edit,.pf-dash .pf-dash-edit{background:var(--pf19-signal)!important;color:var(--pf19-bg)!important;border-color:var(--pf19-signal)!important;box-shadow:none!important}
+.pf-studio .btn.primary:hover,.pf-dash-primary:hover,.pf-dash-edit:hover{background:#e8ffab!important;color:#101213!important}
+.pf-studio .btn.secondary,.pf-dash-outline,.pf-dash-ghost,.pf-studio .iconbtn,.pf-dash .pf-dash-close{background:var(--pf19-raised)!important;color:var(--pf19-ink)!important;border-color:var(--pf19-line)!important}
+.pf-dash-backdrop,.pf-modal-overlay{background:#050706c9!important}
+.pf-dash-dialog,.pf-create-modal,.pf-studio .modal,.pf-dash-create-dialog{background:var(--pf19-surface)!important;border-color:var(--pf19-line)!important;color:var(--pf19-ink)!important}
+.pf-dash-dialog input,.pf-dash-dialog select,.pf-studio input,.pf-studio select,.pf-studio textarea{background:#101213!important;border-color:var(--pf19-line)!important;color:var(--pf19-ink)!important}
+.pf-dash-chooser-option.selected,.pf-dash-chooser-option[aria-pressed="true"]{border-color:var(--pf19-signal)!important;background:#d9ff6610!important}
+.pf-dash-selected-check{background:var(--pf19-signal)!important;color:#101213!important}
+/* Editor chrome: explicit regions; NEVER apply to canvas */
+.editor{--pf19-editor-bg:#101213;background:var(--pf19-bg)!important;color:var(--pf19-ink)}
+.editor .editor-top,.editor .editor-sidebar,.editor .inspector,.editor .editor-tabs,.editor .inspector-head,.editor .sidebar-heading{background:var(--pf19-surface)!important;color:var(--pf19-ink)!important;border-color:var(--pf19-line)!important}
+.editor .editor-body{background:var(--pf19-bg)!important}
+.editor .editor-stage{background:repeating-linear-gradient(45deg,#141817 0 15px,#171b19 15px 30px)!important}
+.editor .editor-heading small,.editor .editor-sidebar small,.editor .inspector small,.editor .inspector .muted,.editor .pf5-hint,.editor .pf-design-description{color:var(--pf19-muted)!important}
+.editor .editor-top .btn.primary,.editor .editor-sidebar .btn.primary,.editor .inspector .btn.primary{background:var(--pf19-signal)!important;border-color:var(--pf19-signal)!important;color:#101213!important;box-shadow:none!important}
+.editor .editor-top .btn.secondary,.editor .editor-top .iconbtn,.editor .editor-sidebar .btn.secondary,.editor .inspector .btn.secondary,.editor .inspector .iconbtn{background:var(--pf19-raised)!important;color:var(--pf19-ink)!important;border-color:var(--pf19-line)!important;box-shadow:none!important}
+.editor .editor-tabs button.active,.editor .editor-tabs button[aria-selected="true"],.editor .editor-top .iconbtn.active{background:#d9ff661a!important;color:var(--pf19-signal)!important;border-color:#d9ff6677!important}
+.editor .editor-sidebar .layers button[aria-pressed="true"],.editor .editor-sidebar .layers .selected,.editor .pf-design-choice[aria-pressed="true"],.editor .pf4-template-option[aria-pressed="true"],.editor .pf5-recipe-switch button[aria-pressed="true"]{border-color:var(--pf19-signal)!important;background:#d9ff6610!important}
+.editor .editor-sidebar .catalog button,.editor .editor-sidebar .layers button,.editor .editor-sidebar .pf-design-choice,.editor .editor-sidebar .pf4-template-option,.editor .inspector .pf5-recipe-switch button,.editor .inspector .pf7-inspector-tip{background:var(--pf19-raised)!important;color:var(--pf19-ink)!important;border-color:var(--pf19-line)!important}
+.editor .editor-sidebar input:not([type="color"]),.editor .editor-sidebar select,.editor .editor-sidebar textarea,.editor .inspector input:not([type="color"]),.editor .inspector select,.editor .inspector textarea{background:#101213!important;color:var(--pf19-ink)!important;border-color:var(--pf19-line)!important}
+.editor .editor-sidebar input[type="color"],.editor .inspector input[type="color"]{border-color:var(--pf19-line)!important}
+.editor .editor-sidebar input[type="range"],.editor .inspector input[type="range"]{accent-color:var(--pf19-signal)}
+.editor .editor-sidebar :is(button,input,select,textarea):focus-visible,.editor .inspector :is(button,input,select,textarea):focus-visible,.editor .editor-top :is(button,a):focus-visible,.pf-studio :is(button,a,input,select,textarea):focus-visible,.pf-dash :is(button,a,input,select,textarea):focus-visible,.pf17-entry :is(button,a,input):focus-visible{outline:2px solid var(--pf19-focus)!important;outline-offset:3px}
+/* V17 login + V18 local account form: only application entry */
+.pf17-entry{--pf17-ink:var(--pf19-ink)!important;--pf17-muted:var(--pf19-muted)!important;--pf17-violet:var(--pf19-signal)!important;--pf17-line:rgba(215,230,212,.16)!important;background:var(--pf19-bg)!important;color:var(--pf19-ink)!important}
+.pf17-entry .pf17-topline,.pf17-entry .pf17-bottom{background:var(--pf19-bg)!important;border-color:var(--pf19-line)!important}
+.pf17-entry .pf17-story{background:radial-gradient(ellipse at 75% 40%,#d9ff6616,transparent 55%),linear-gradient(145deg,#1b1e1f,#101213)!important;border-color:var(--pf19-line)!important}
+.pf17-entry .pf17-access{background:radial-gradient(circle at 50% 8%,#d9ff660b,transparent 55%),#141716!important}
+.pf17-entry .pf17-mark,.pf17-entry .pf17-access-symbol{background:linear-gradient(145deg,#35402a,#191d18)!important;border-color:#d9ff6677!important;box-shadow:none!important}
+.pf17-entry .pf17-mark,.pf17-entry .pf17-access-symbol span,.pf17-entry .pf17-wordmark-light,.pf17-entry .pf17-eyebrow,.pf17-entry .pf17-access-kicker,.pf17-entry .pf17-story h1 em,.pf17-entry .pf17-story h1>span,.pf17-entry .pf17-access h2 em,.pf17-entry .pf17-feature-icon{color:var(--pf19-signal)!important}
+.pf17-entry .pf17-story h1,.pf17-entry .pf17-access h2{color:var(--pf19-ink)!important}
+.pf17-entry .pf17-lede,.pf17-entry .pf17-access-description,.pf17-entry .pf17-feature-copy small,.pf17-entry .pf17-access-help{color:var(--pf19-muted)!important}
+.pf17-entry .pf17-feature-icon,.pf17-entry .pf17-account,.pf17-entry .pf17-account-arrow{background:var(--pf19-surface)!important;border-color:var(--pf19-line)!important}
+.pf17-entry .pf17-account:hover,.pf17-entry .pf17-account:focus-visible,.pf17-entry .pf17-account-selected{background:#d9ff6610!important;border-color:var(--pf19-signal)!important}
+.pf17-entry .pf17-avatar,.pf17-entry .pf17-avatar-1,.pf17-entry .pf17-avatar-2,.pf17-entry .pf17-avatar-3{background:linear-gradient(135deg,#d9ff66,#708b34)!important;color:#101213!important}
+.pf17-entry .pf17-account-arrow,.pf17-entry .pf17-access-bottom span+span,.pf17-entry .pf17-floating-check{color:var(--pf19-signal)!important}
+.pf17-entry .pf17-window{border-color:#d9ff6650!important;background:#1b1e1f!important}.pf17-entry .pf17-window-body{background:linear-gradient(145deg,#2a3025,#101213)!important}.pf17-entry .pf17-window-orb{background:radial-gradient(circle at 35% 35%,#f2ffc4,#c3ee58 38%,#364421 75%)!important;box-shadow:0 0 70px #d9ff6640!important}.pf17-entry .pf17-window-title i,.pf17-entry .pf17-window-tag{color:var(--pf19-signal)!important}.pf17-entry .pf17-floating{background:var(--pf19-ink)!important;color:#101213!important}.pf17-entry .pf17-floating-check{background:#35402a!important}
+/* V18 registration elements, limited to login region */
+.pf17-entry .pf18-register-trigger,.pf17-entry .pf18-submit,.pf17-entry .pf18-primary,.pf17-entry .pf18-create{background:var(--pf19-signal)!important;color:#101213!important;border-color:var(--pf19-signal)!important}
+.pf17-entry .pf18-register,.pf17-entry .pf18-form,.pf17-entry .pf18-form-card{background:var(--pf19-surface)!important;color:var(--pf19-ink)!important;border-color:var(--pf19-line)!important}
+.pf17-entry .pf18-register input,.pf17-entry .pf18-form input{background:#101213!important;color:var(--pf19-ink)!important;border-color:var(--pf19-line)!important}
+/* Strong accessibility contrast for application UI */
+.pf-studio :is(button,input,select,textarea),.editor :is(.editor-top,.editor-sidebar,.inspector) :is(button,input,select,textarea){accent-color:var(--pf19-signal)}
+@media(prefers-reduced-motion:reduce){.pf-studio *, .editor .editor-top *, .editor .editor-sidebar *, .editor .inspector *, .pf17-entry *{transition-duration:0s!important}}

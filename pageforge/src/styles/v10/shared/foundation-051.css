@@ -1,0 +1,5 @@
+
+.kind-features .feature-grid,.kind-pricing .feature-grid,.kind-testimonials .feature-grid,.kind-stats .feature-grid{gap:18px}
+.feature-tile{background:color-mix(in srgb,currentColor 4%,transparent);border:1px solid color-mix(in srgb,currentColor 14%,transparent);padding:34px;min-height:200px;transition:transform .2s,border-color .2s}
+.feature-tile:hover{transform:translateY(-5px);border-color:var(--accent)}.feature-tile strong{font-size:19px;line-height:1.35}
+.kind-stats .feature-tile strong{font-size:clamp(24px,3vw,42px);letter-spacing:-.06em}

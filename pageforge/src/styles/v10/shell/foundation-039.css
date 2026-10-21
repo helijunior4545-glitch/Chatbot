@@ -1,0 +1,5 @@
+
+.app-nav{background:#0b0e15;border-right:1px solid var(--pf-border);padding:30px 18px}
+.app-nav nav a{border:1px solid transparent;border-radius:12px}
+.app-nav nav a:hover{border-color:#ffffff13;background:#ffffff0c}
+.app-main{background:radial-gradient(ellipse at 95% 0%,#6042a014,transparent 38%),#0b0e15}

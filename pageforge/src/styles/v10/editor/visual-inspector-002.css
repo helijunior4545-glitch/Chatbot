@@ -1,0 +1,28 @@
+
+.editor{background:#090d17!important;color:var(--pf7-ink);min-height:100dvh}
+.editor-top{background:rgba(13,18,30,.94)!important;backdrop-filter:blur(20px);border-bottom:1px solid var(--pf7-border)!important;min-height:70px;gap:12px}
+.editor-heading strong{font-size:15px;letter-spacing:-.03em}.editor-heading small{color:var(--pf7-muted)}
+.editor-top-actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.editor-top .btn,.editor-top .iconbtn{border-radius:11px!important;min-height:36px;transition:transform .18s,border-color .18s,background .18s}
+.editor-top .btn:hover,.editor-top .iconbtn:hover{transform:translateY(-1px);border-color:#8888ba!important}
+.editor-body{min-height:calc(100dvh - 70px);background:#0b0f19}
+.editor-sidebar,.inspector{background:#101522!important;border-color:var(--pf7-border)!important;min-width:0}
+.editor-sidebar{box-shadow:8px 0 40px #0002}.inspector{box-shadow:-8px 0 40px #0002}
+.editor-tabs{background:#0e1420;border-bottom:1px solid var(--pf7-border)}
+.editor-tabs button{font-weight:650;letter-spacing:.01em}.editor-tabs button.active{color:#e7e3ff!important;border-bottom-color:#a89dff!important}
+.editor-stage{background:radial-gradient(ellipse at 50% 0%,#222b42 0%,#0a101c 66%)!important;min-width:0;overflow:auto}
+.canvas-frame{box-shadow:0 32px 110px #0008,0 0 0 1px #ffffff16;transition:width .28s ease,max-width .28s ease;overflow:hidden}
+.canvas-frame.mobile{width:390px!important;max-width:calc(100% - 20px)!important;margin-inline:auto}
+.canvas-frame.tablet{width:768px!important;max-width:calc(100% - 20px)!important;margin-inline:auto}
+.canvas-frame.desktop{width:100%;max-width:100%}
+.editor .layer{border-radius:12px!important;margin:3px 7px;transition:background .16s,border-color .16s}
+.editor .layer.selected{background:#24243f!important;border-color:#8f83ff!important;box-shadow:inset 3px 0 #9b8fff}
+.editor .layer-label strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.editor .properties input,.editor .properties textarea,.editor .properties select{border-radius:10px!important;min-width:0;width:100%;transition:border-color .15s,box-shadow .15s}
+.editor .properties input:focus-visible,.editor .properties textarea:focus-visible,.editor .properties select:focus-visible{outline:2px solid #938aff!important;outline-offset:1px;box-shadow:0 0 0 4px #938aff19}
+.editor .inspector-head{background:#151c2d;border-bottom:1px solid var(--pf7-border);min-height:56px}
+.editor .pf5-section-inspector{min-width:0}
+.pf7-inspector-tip{margin:12px 15px;padding:12px 13px;border:1px solid #8d83ff55;border-radius:12px;background:linear-gradient(120deg,#302a55,#171c2c);font-size:12px;line-height:1.55;color:#dedafc}
+.pf7-inspector-tip strong{display:block;color:white;margin-bottom:3px}
+.pf7-selected-path{display:inline-block;padding:5px 9px;border-radius:7px;background:#8d83ff20;color:#c5bcff;font:600 11px ui-monospace,monospace;margin:8px 0}
+.pf7-field-target{outline:2px solid #aa9cff!important;outline-offset:3px;border-radius:5px;animation:pf7-pulse 1.15s ease 2}

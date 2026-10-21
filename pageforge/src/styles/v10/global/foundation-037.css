@@ -1,0 +1,6 @@
+
+
+
+/* PAGEFORGE PREMIUM V2 — identidade, dashboard, editor e preview */
+:root{--pf-bg:#090b10;--pf-panel:#11151e;--pf-border:#ffffff13;--pf-muted:#9da5b7;--pf-accent:#a995ff}
+body{background:var(--pf-bg);-webkit-font-smoothing:antialiased}

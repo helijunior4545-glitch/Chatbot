@@ -1,0 +1,11 @@
+
+.metric{background:linear-gradient(145deg,#161a24,#10141c);border-color:var(--pf-border);border-radius:19px;min-height:157px;box-shadow:0 12px 35px #00000018}
+.metric>strong{font-size:38px}.metric>small{font-size:12px}
+.site-card{background:#12161e;border:1px solid var(--pf-border);border-radius:20px;box-shadow:0 20px 45px #0002;transition:transform .2s,border-color .2s,box-shadow .2s}
+.site-card:hover{transform:translateY(-4px);border-color:#a18cff70;box-shadow:0 26px 60px #0005}
+.site-thumb{height:205px;position:relative;overflow:hidden;display:block;background:#e9ebf2!important;border-bottom:1px solid #ffffff1b}
+.site-thumb iframe{width:1440px;height:900px;border:0;position:absolute;top:0;left:0;transform:scale(.25);transform-origin:top left;pointer-events:none;background:#fff}
+.site-thumb .thumb-cover{position:absolute;inset:0;background:transparent;z-index:2}
+.site-card-body{padding:22px}.site-card-title h3{font-size:17px}.site-card-body p{line-height:1.6;min-height:38px}
+.new-site-card{background:linear-gradient(135deg,#181827,#12151d);border-color:#5c517d;transition:transform .2s,border-color .2s}
+.new-site-card:hover{transform:translateY(-3px);border-color:#ae9aff}

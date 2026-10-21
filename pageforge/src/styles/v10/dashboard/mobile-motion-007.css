@@ -1,0 +1,3 @@
+
+.site-card,.new-site-card,.metric{transition:transform var(--pf8-normal) var(--pf8-ease),border-color var(--pf8-normal),box-shadow var(--pf8-normal)!important}
+.site-card:focus-within,.new-site-card:focus-within{border-color:#a69cff!important;box-shadow:0 0 0 3px #a69cff28,0 18px 48px #0005!important}

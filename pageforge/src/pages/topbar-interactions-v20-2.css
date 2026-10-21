@@ -1,0 +1,34 @@
+/* PageForge V20.2 — functional header menus; isolated from rendered sites */
+.pf-studio .pf202-top{position:relative;gap:9px;flex-wrap:nowrap}
+.pf-studio .pf202-trigger{appearance:none;cursor:pointer;font:inherit;color:#e8ede3;border:1px solid transparent;transition:background .18s,border-color .18s,transform .18s}
+.pf-studio .pf202-trigger:hover,.pf-studio .pf202-trigger[aria-expanded="true"]{background:#d9ff6618!important;border-color:#d9ff6655!important;color:#f3f1ea!important}
+.pf-studio .pf202-trigger:focus-visible,.pf-studio .pf202-popover button:focus-visible{outline:2px solid #d9ff66;outline-offset:3px}
+.pf-studio .pf202-anchor{display:flex;align-items:center;min-width:0}
+.pf-studio .pf202-top .pf12-mode{display:inline-flex;align-items:center;gap:7px;border-radius:11px;padding:10px 12px;background:#1c241b}
+.pf-studio .pf202-top .pf12-bell{position:relative;flex:0 0 44px}
+.pf-studio .pf202-top .pf12-bell::after{display:none!important}
+.pf202-unread{position:absolute;right:7px;top:6px;width:7px;height:7px;border-radius:50%;background:#d9ff66;box-shadow:0 0 0 3px #1b211b}
+.pf-studio .pf202-profile,.pf-studio .pf202-workspace{display:inline-flex;align-items:center;gap:9px;background:transparent;border-radius:12px;padding:6px 8px;text-align:left;min-height:44px}
+.pf-studio .pf202-workspace .pf12-workspace-title{min-width:0}
+.pf-studio .pf202-popover{position:absolute;z-index:5000;right:0;top:calc(100% + 15px);width:min(390px,calc(100vw - 30px));max-height:min(560px,75vh);overflow:auto;border:1px solid #d9ff6645;border-radius:19px;background:#151a17;color:#f3f1ea;box-shadow:0 28px 75px #000a,0 0 40px #d9ff6609;animation:pf202-in .2s ease-out}
+.pf202-popover-head{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;padding:17px 19px;border-bottom:1px solid #d9ff6628;background:#151a17}
+.pf202-popover-head strong{font-size:17px}.pf202-popover-head button{border:0;background:transparent;color:#e1e7d9;cursor:pointer;padding:5px}
+.pf202-popover-body{padding:13px 15px 16px;font-size:14px;line-height:1.55;color:#bdc7b9}
+.pf202-popover-body p{margin:8px 0 13px;font-size:14px;line-height:1.6}
+.pf202-notice{display:flex;align-items:flex-start;gap:12px;padding:13px 9px;border-radius:12px;width:100%;text-align:left}
+.pf202-notice strong,.pf202-identity strong{display:block;font-size:15px;color:#f3f1ea}
+.pf202-notice small,.pf202-identity small{display:block;font-size:13px;color:#aeb8ad;margin-top:5px;overflow-wrap:anywhere}
+.pf202-symbol{flex:0 0 37px;height:37px;display:grid;place-items:center;border:1px solid #d9ff6640;border-radius:12px;background:#d9ff6613;color:#d9ff66}
+.pf202-notice-action,.pf202-menu-action{cursor:pointer;background:transparent;color:inherit;border:0;border-bottom:1px solid #ffffff0c}
+.pf202-notice-action:hover,.pf202-menu-action:hover{background:#d9ff660d}
+.pf202-notice-action>span:nth-child(2){flex:1;min-width:0}
+.pf202-empty{padding:12px;color:#b5bfaf}
+.pf202-tip{display:flex;gap:9px;align-items:center;padding:9px 0}.pf202-tip svg{color:#d9ff66;flex:none}
+.pf202-footer-action{width:100%;border:1px solid #d9ff6650;border-radius:11px;padding:12px 14px;margin-top:10px;background:#d9ff6617;color:#e8ffae;text-align:center;font-size:14px;font-weight:700;cursor:pointer}
+.pf202-footer-action:hover{background:#d9ff6629}
+.pf202-identity{display:flex;gap:12px;align-items:center;padding:10px 4px 17px;margin-bottom:8px;border-bottom:1px solid #ffffff16}
+.pf202-menu-action{display:flex;gap:12px;align-items:center;width:100%;padding:13px 10px;border-radius:10px;text-align:left;font-size:15px}
+@keyframes pf202-in{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){.pf-studio .pf202-top .pf12-actor-name,.pf-studio .pf202-workspace .pf12-workspace-title{display:none}.pf-studio .pf202-top{gap:3px}}
+@media(max-width:560px){.pf-studio .pf202-top .pf12-mode{font-size:0;padding:9px}.pf-studio .pf202-top .pf12-mode svg{width:19px;height:19px}.pf-studio .pf202-popover{right:-10px}.pf-studio .pf202-profile{padding:4px}}
+@media(prefers-reduced-motion:reduce){.pf202-popover{animation:none!important}.pf-studio .pf202-trigger{transition:none!important}}

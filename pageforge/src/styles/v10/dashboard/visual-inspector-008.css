@@ -1,0 +1,8 @@
+
+.metric-grid{gap:14px!important}.metric{border:1px solid #ffffff19!important;border-radius:17px!important;background:linear-gradient(145deg,#192238,#111827)!important;box-shadow:0 12px 32px #0002}
+.metric strong{font-variant-numeric:tabular-nums;letter-spacing:-.055em}
+.site-grid{gap:18px!important}.site-card{border:1px solid #ffffff19!important;border-radius:19px!important;background:#141c2b!important;overflow:hidden;box-shadow:0 15px 40px #0003;transition:transform .2s,box-shadow .2s,border-color .2s}
+.site-card:hover{transform:translateY(-4px);box-shadow:0 22px 60px #0006;border-color:#a99cff70!important}
+.site-thumb{background-size:cover!important;background-position:center!important;min-height:175px}
+.site-card-body{padding:18px!important}.site-card-title{letter-spacing:-.025em}
+.new-site-card{border:1px dashed #b5aaff70!important;border-radius:19px!important;background:linear-gradient(145deg,#262044,#131a2a)!important}

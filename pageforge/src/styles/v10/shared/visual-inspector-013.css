@@ -1,0 +1,23 @@
+
+@media(max-width:560px){
+ .pf6-site .pf4-section .pf4-copy h2{font-size:clamp(2.1rem,10.3vw,3.7rem)!important;letter-spacing:-.055em!important}
+ .pf6-site .pf4-section.kind-hero .pf4-copy h2{font-size:clamp(2.4rem,11vw,4.1rem)!important;overflow-wrap:break-word}
+ .pf6-site .pf4-tiles,.pf6-site .pf4-gallery{grid-template-columns:1fr!important}
+ .pf6-site .pf4-section .pf4-inner{padding-inline:20px!important}
+ .pf6-fashion .pf4-section.kind-hero .pf4-inner,.pf6-studio .pf4-section.kind-hero .pf4-inner{padding:0!important}
+ .pf6-fashion .pf4-section.kind-hero .pf4-copy{left:4%!important;width:92%!important;bottom:7%!important;padding:15px!important}
+ .pf6-studio .pf4-section.kind-hero .pf4-copy{left:5%!important;width:90%!important;bottom:9%!important}
+ .pf6-fashion .pf4-section.kind-hero .pf4-copy h2,.pf6-studio .pf4-section.kind-hero .pf4-copy h2{font-size:clamp(2.35rem,10vw,4rem)!important}
+ .pf6-architecture .pf4-section.kind-hero .pf4-media{height:42svh!important;min-height:230px!important}
+ .pf6-commerce .pf4-section.kind-hero .pf4-media{border-radius:18px!important;box-shadow:8px 8px 0 #cad9e8!important}
+ .pf6-site .pf4-nav{padding:12px 16px!important}
+ .pf6-site .pf4-nav-cta{padding:8px 10px!important}
+ .editor-top{padding:10px 12px;align-items:flex-start;flex-wrap:wrap}
+ .editor-top-actions{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}
+ .editor-top-actions .btn{white-space:nowrap}
+ .editor-body{display:flex;flex-direction:column;min-height:0}
+ .editor-sidebar,.inspector{width:100%!important;max-width:100%!important;max-height:none!important;overflow:visible!important}
+ .editor-stage{width:100%!important;min-height:65svh;padding:16px 8px!important;order:-1}
+ .canvas-frame{max-width:100%!important}
+ .editor .pf4-template-picker{grid-template-columns:repeat(2,minmax(0,1fr))}
+}

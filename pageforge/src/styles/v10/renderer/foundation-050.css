@@ -1,0 +1,6 @@
+
+.kind-hero .render-image{margin:0;height:clamp(340px,40vw,560px);width:100%;object-fit:cover;box-shadow:0 35px 80px #0003;transform:rotate(-1deg)}
+.render-button{border-radius:999px;padding:17px 27px;box-shadow:0 14px 35px color-mix(in srgb,var(--accent) 26%,transparent);transition:transform .2s,filter .2s}
+.render-button:hover{transform:translateY(-3px);filter:brightness(1.1)}
+.kind-split .render-inner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(35px,6vw,95px);align-items:center}
+.kind-split .render-image{margin:0;min-height:380px;max-height:600px;object-fit:cover}

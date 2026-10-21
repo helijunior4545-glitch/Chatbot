@@ -1,0 +1,280 @@
+/* PageForge Premium Templates V4. Design lives in the renderer, not in admin chrome. */
+.pf4-site{--pf4-line:color-mix(in srgb,var(--pf-page-fg) 16%,transparent);--pf4-muted:color-mix(in srgb,var(--pf-page-fg) 64%,transparent);--pf4-panel:color-mix(in srgb,var(--pf-page-fg) 5%,transparent);font-family:var(--pf-font)!important;overflow:clip;position:relative}
+.pf4-site .pf4-nav{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:28px;min-height:88px;padding:18px clamp(22px,6.4vw,112px);border-bottom:1px solid var(--pf4-line);background:var(--pf-page-bg);color:var(--pf-page-fg)}
+.pf4-site .pf4-logo{display:inline-flex;align-items:center;gap:11px;text-decoration:none;color:inherit;font-size:clamp(16px,1.4vw,21px);font-weight:900;letter-spacing:-.055em;white-space:nowrap}.pf4-site .pf4-logo-mark{font-size:29px;color:var(--pf-brand)}
+.pf4-site .pf4-nav nav{display:flex;align-items:center;gap:clamp(18px,3vw,48px)}.pf4-site .pf4-nav nav a{font-size:13px;text-decoration:none;color:var(--pf4-muted);font-weight:650;transition:color .2s}.pf4-site .pf4-nav nav a:hover{color:var(--pf-page-fg)}
+.pf4-site .pf4-nav-cta{display:inline-flex;align-items:center;gap:28px;border:1px solid var(--pf4-line);border-radius:999px;padding:13px 19px;font-size:12px;font-weight:800;text-decoration:none;color:inherit;white-space:nowrap}.pf4-site .pf4-nav-cta span{color:var(--pf-brand)}
+.pf4-site .pf4-section{position:relative;min-width:0}.pf4-site .pf4-inner{min-width:0}.pf4-site .pf4-copy{min-width:0}.pf4-site .pf4-copy h2{overflow-wrap:break-word;text-wrap:balance}.pf4-site .pf4-copy .subtitle{max-width:660px}.pf4-site .pf4-action{position:relative;z-index:3}.pf4-site .pf4-media{position:relative;overflow:hidden}.pf4-site .pf4-media-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,#0005);pointer-events:none}.pf4-site .pf4-media .render-image{display:block;width:100%;height:100%;object-fit:cover}.pf4-site .pf4-tiles{min-width:0}.pf4-site .pf4-tile{min-width:0}.pf4-site .pf4-tile strong{overflow-wrap:break-word}
+/* Full-bleed luxury cover: content floats over photograph, not a generic split. */
+.pf4-site .kind-hero[data-recipe="immersive-cover"]{padding:0;min-height:min(880px,95svh);display:flex;align-items:stretch;background:#121411;color:#fff}
+.pf4-site .kind-hero[data-recipe="immersive-cover"] .pf4-inner{display:flex;align-items:flex-end;max-width:none;min-height:min(880px,95svh);padding:clamp(100px,13vw,200px) clamp(24px,8vw,145px) clamp(75px,10vw,135px)}
+.pf4-site .kind-hero[data-recipe="immersive-cover"] .pf4-media{position:absolute;inset:0;width:100%;height:100%;min-height:0;aspect-ratio:auto;border-radius:0;box-shadow:none;z-index:-1}.pf4-site .kind-hero[data-recipe="immersive-cover"] .pf4-media:after{background:linear-gradient(90deg,#090b09b8,transparent 85%),linear-gradient(0deg,#090b09c7,transparent 60%)}
+.pf4-site .kind-hero[data-recipe="immersive-cover"] .pf4-copy{max-width:850px;position:relative;z-index:2}.pf4-site .kind-hero[data-recipe="immersive-cover"] .pf4-copy h2{font-family:Georgia,serif;font-weight:400;font-size:clamp(3.5rem,7.5vw,9rem);letter-spacing:-.065em;line-height:1.01}.pf4-site .kind-hero[data-recipe="immersive-cover"] .pf4-copy .bodycopy{max-width:540px;color:#f1eee7;opacity:.95}.pf4-site .kind-hero[data-recipe="immersive-cover"] .pf-kicker{color:#e8d5b2}.pf4-site .kind-hero[data-recipe="immersive-cover"] .pf-action{background:#e8d5b2;color:#1c211b}
+/* SaaS cover: stage, luminous edges, screenshot-like treatment. */
+.pf4-site .kind-hero[data-recipe="product-stage"]{min-height:720px;background:radial-gradient(circle at 77% 42%,color-mix(in srgb,var(--pf-brand) 29%,transparent),transparent 42%),radial-gradient(circle at 0% 0%,#30427724,transparent 55%),var(--pf-page-bg)}
+.pf4-site .kind-hero[data-recipe="product-stage"] .pf4-inner{grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr)}
+.pf4-site .kind-hero[data-recipe="product-stage"] .pf4-copy h2{font-size:clamp(3.1rem,6.1vw,7.5rem);letter-spacing:-.09em}.pf4-site .kind-hero[data-recipe="product-stage"] .pf4-media{aspect-ratio:1/1;transform:perspective(1100px) rotateY(-8deg) rotateX(4deg);border:1px solid color-mix(in srgb,var(--pf-brand) 40%,transparent);box-shadow:0 35px 130px color-mix(in srgb,var(--pf-brand) 26%,transparent),0 2px 0 #fff2 inset}.pf4-site .kind-hero[data-recipe="product-stage"] .pf4-media:before{content:'●  ●  ●';position:absolute;top:0;left:0;right:0;height:40px;background:#131521df;color:#8583b0;z-index:4;font-size:10px;letter-spacing:6px;display:flex;align-items:center;padding-left:20px}.pf4-site .kind-hero[data-recipe="product-stage"] .pf4-media .render-image{object-position:center}
+/* Bold creative cover: massive typography and offset image. */
+.pf4-site .kind-hero[data-recipe="type-monument"]{background:radial-gradient(circle at 90% 0%,color-mix(in srgb,var(--pf-brand) 19%,transparent),transparent 42%),var(--pf-page-bg)}
+.pf4-site .kind-hero[data-recipe="type-monument"] .pf4-inner{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}.pf4-site .kind-hero[data-recipe="type-monument"] .pf4-copy h2{font-weight:950;font-size:clamp(3.7rem,7.4vw,9rem);line-height:.88;letter-spacing:-.11em;text-transform:uppercase}.pf4-site .kind-hero[data-recipe="type-monument"] .pf4-media{aspect-ratio:3/4;border-radius:0;transform:rotate(3deg);box-shadow:18px 18px 0 var(--pf-brand)}
+/* Bento cards vary dramatically by span, without requiring more editor fields. */
+.pf4-site .pf4-section[data-recipe="bento"] .pf4-tiles{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(210px,auto)}.pf4-site .pf4-section[data-recipe="bento"] .pf4-tile{min-height:240px;background:var(--pf4-panel)}.pf4-site .pf4-section[data-recipe="bento"] .pf4-tile:first-child{grid-column:span 2;grid-row:span 2;background:radial-gradient(circle at 100% 0%,color-mix(in srgb,var(--pf-brand) 28%,transparent),transparent 60%),var(--pf4-panel);min-height:480px}.pf4-site .pf4-section[data-recipe="bento"] .pf4-tile:first-child strong{font-size:clamp(1.8rem,3vw,3.5rem)}.pf4-site .pf4-section[data-recipe="bento"] .pf4-tile:nth-child(4){grid-column:span 2}
+.pf4-site .pf4-section[data-recipe="proof-strip"]{padding-block:clamp(55px,6vw,100px);border-top:1px solid var(--pf4-line);border-bottom:1px solid var(--pf4-line)}.pf4-site .pf4-section[data-recipe="proof-strip"] .pf4-copy h2{font-size:clamp(2.1rem,4vw,4.5rem)}.pf4-site .pf4-section[data-recipe="proof-strip"] .pf4-tiles{grid-template-columns:repeat(3,minmax(0,1fr));gap:0}.pf4-site .pf4-section[data-recipe="proof-strip"] .pf4-tile{min-height:150px;border:0;border-right:1px solid var(--pf4-line);border-radius:0;background:transparent;padding:22px clamp(18px,3vw,50px)}.pf4-site .pf4-section[data-recipe="proof-strip"] .pf4-tile:first-child{padding-left:0}.pf4-site .pf4-section[data-recipe="proof-strip"] .pf4-tile:last-child{border-right:0}.pf4-site .pf4-section[data-recipe="proof-strip"] .pf4-tile strong{font-size:clamp(2.2rem,4vw,4.7rem);letter-spacing:-.075em}
+.pf4-site .pf4-section[data-recipe="quote-wall"] .pf4-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.pf4-site .pf4-section[data-recipe="quote-wall"] .pf4-tile{min-height:300px;justify-content:space-between}.pf4-site .pf4-section[data-recipe="quote-wall"] .pf4-tile strong{font-family:Georgia,serif;font-weight:400;font-size:clamp(1.45rem,2.5vw,2.7rem);line-height:1.32}
+.pf4-site .pf4-section[data-recipe="pricing-premium"] .pf4-tile:nth-child(2){background:color-mix(in srgb,var(--pf-brand) 13%,var(--pf-page-bg));border-color:var(--pf-brand);transform:translateY(-14px)}
+.pf4-site .pf4-section[data-recipe="editorial-split"] .pf4-inner{gap:clamp(40px,8vw,140px)}.pf4-site .pf4-section[data-recipe="editorial-split"] .pf4-media{aspect-ratio:4/5;border-radius:0}.pf4-site .pf4-section[data-recipe="editorial-split"] .pf4-copy h2{font-size:clamp(3rem,5.5vw,6.6rem)}
+.pf4-site .pf4-section[data-recipe="gallery-mosaic"] .pf4-inner{display:block}.pf4-site .pf4-section[data-recipe="gallery-mosaic"] .pf4-copy{margin-bottom:clamp(35px,6vw,85px)}.pf4-site .pf4-gallery{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(12px,1.8vw,25px)}.pf4-site .pf4-gallery-card{grid-column:span 4;min-width:0;margin:0;position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--pf4-panel)}.pf4-site .pf4-gallery-card:first-child{grid-column:span 8;aspect-ratio:8/5}.pf4-site .pf4-gallery-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}.pf4-site .pf4-gallery-card:hover img{transform:scale(1.04)}.pf4-site .pf4-gallery-card figcaption{position:absolute;inset:auto 0 0;display:flex;justify-content:space-between;gap:12px;padding:28px;color:white;font-weight:700;background:linear-gradient(transparent,#0009)}
+.pf4-site .pf4-section[data-recipe="immersive-cta"]{padding-block:clamp(110px,15vw,240px);background:radial-gradient(circle at 50% 20%,color-mix(in srgb,var(--pf-brand) 30%,transparent),transparent 60%),var(--pf-page-bg)}.pf4-site .pf4-section[data-recipe="immersive-cta"] .pf4-copy h2{font-size:clamp(3.2rem,8vw,10rem)}
+.pf4-site .pf4-section[data-recipe="contact-premium"] .pf4-inner{align-items:start}.pf4-site .pf4-section[data-recipe="contact-premium"] .pf4-form{padding:clamp(25px,4vw,55px);border:1px solid var(--pf4-line);border-radius:var(--pf-round);background:var(--pf4-panel)}
+.pf4-site .pf4-mobile-contact{display:none}
+/* In the editor, container queries handle a narrow canvas even on a wide desktop. */
+.canvas-frame{container-type:inline-size}
+@container (max-width:800px){.pf4-site .kind-hero[data-recipe="product-stage"] .pf4-inner,.pf4-site .kind-hero[data-recipe="type-monument"] .pf4-inner{grid-template-columns:minmax(0,1fr)}.pf4-site .pf4-section[data-recipe="bento"] .pf4-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.pf4-site .pf4-section[data-recipe="bento"] .pf4-tile:first-child{grid-column:span 2;grid-row:span 1;min-height:270px}.pf4-site .pf4-section[data-recipe="bento"] .pf4-tile:nth-child(4){grid-column:span 2}.pf4-site .pf4-section[data-recipe="gallery-mosaic"] .pf4-gallery-card:first-child{grid-column:span 12}.pf4-site .pf4-section[data-recipe="gallery-mosaic"] .pf4-gallery-card{grid-column:span 6}}
+@container (max-width:520px){.pf4-site .pf4-section[data-recipe="bento"] .pf4-tiles,.pf4-site .pf4-section[data-recipe="proof-strip"] .pf4-tiles,.pf4-site .pf4-section[data-recipe="quote-wall"] .pf4-tiles{grid-template-columns:minmax(0,1fr)}.pf4-site .pf4-section[data-recipe="bento"] .pf4-tile,.pf4-site .pf4-section[data-recipe="bento"] .pf4-tile:first-child,.pf4-site .pf4-section[data-recipe="bento"] .pf4-tile:nth-child(4){grid-column:span 1;min-height:200px}.pf4-site .pf4-section[data-recipe="proof-strip"] .pf4-tile{border-right:0;border-bottom:1px solid var(--pf4-line);padding:20px 0}.pf4-site .pf4-section[data-recipe="gallery-mosaic"] .pf4-gallery-card,.pf4-site .pf4-section[data-recipe="gallery-mosaic"] .pf4-gallery-card:first-child{grid-column:span 12;aspect-ratio:5/4}.pf4-site .kind-hero[data-recipe="type-monument"] .pf4-media{transform:none;box-shadow:8px 8px 0 var(--pf-brand)}.pf4-site .kind-hero[data-recipe="product-stage"] .pf4-media{transform:none}.pf4-site .kind-hero[data-recipe="immersive-cover"] .pf4-inner{min-height:680px;padding:130px 24px 75px}.pf4-site .kind-hero[data-recipe="immersive-cover"] .pf4-copy h2{font-size:clamp(3rem,12vw,5rem)}.pf4-site .kind-hero[data-recipe="type-monument"] .pf4-copy h2{font-size:clamp(3rem,12vw,5rem)}}
+@media(max-width:800px){.pf4-site .pf4-nav{padding:16px 22px;min-height:72px}.pf4-site .pf4-nav nav{display:none}.pf4-site .pf4-nav-cta{font-size:11px;gap:12px}.pf4-site .kind-hero[data-recipe="product-stage"] .pf4-inner,.pf4-site .kind-hero[data-recipe="type-monument"] .pf4-inner{grid-template-columns:minmax(0,1fr)}.pf4-site .pf4-section[data-recipe="bento"] .pf4-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.pf4-site .pf4-section[data-recipe="bento"] .pf4-tile:first-child{grid-column:span 2;grid-row:span 1;min-height:270px}.pf4-site .pf4-section[data-recipe="gallery-mosaic"] .pf4-gallery-card:first-child{grid-column:span 12}.pf4-site .pf4-section[data-recipe="gallery-mosaic"] .pf4-gallery-card{grid-column:span 6}}
+@media(max-width:520px){.pf4-site .pf4-nav-cta{display:none}.pf4-site .pf4-mobile-contact{position:fixed;z-index:25;bottom:18px;right:18px;display:inline-flex;padding:14px 20px;background:var(--pf-brand);color:#fff;border-radius:999px;text-decoration:none;font-size:12px;font-weight:800;box-shadow:0 12px 38px #0004}.pf4-site .pf4-section[data-recipe="bento"] .pf4-tiles,.pf4-site .pf4-section[data-recipe="proof-strip"] .pf4-tiles,.pf4-site .pf4-section[data-recipe="quote-wall"] .pf4-tiles{grid-template-columns:minmax(0,1fr)}.pf4-site .pf4-section[data-recipe="bento"] .pf4-tile,.pf4-site .pf4-section[data-recipe="bento"] .pf4-tile:first-child,.pf4-site .pf4-section[data-recipe="bento"] .pf4-tile:nth-child(4){grid-column:span 1;min-height:190px}.pf4-site .pf4-section[data-recipe="proof-strip"] .pf4-tile{border-right:0;border-bottom:1px solid var(--pf4-line);padding:20px 0}.pf4-site .pf4-section[data-recipe="gallery-mosaic"] .pf4-gallery-card,.pf4-site .pf4-section[data-recipe="gallery-mosaic"] .pf4-gallery-card:first-child{grid-column:span 12;aspect-ratio:5/4}.pf4-site .kind-hero[data-recipe="type-monument"] .pf4-media,.pf4-site .kind-hero[data-recipe="product-stage"] .pf4-media{transform:none}.pf4-site .kind-hero[data-recipe="immersive-cover"] .pf4-inner{min-height:650px;padding:120px 22px 70px}.pf4-site .kind-hero[data-recipe="immersive-cover"] .pf4-copy h2,.pf4-site .kind-hero[data-recipe="type-monument"] .pf4-copy h2{font-size:clamp(3rem,12vw,5rem)}}
+@media(prefers-reduced-motion:reduce){.pf4-site *{transition:none!important;animation:none!important}}
+/* Premium template selection in creation modal and editor. */
+.pf4-template-picker{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}.pf4-template-option{border:1px solid #ffffff2a;border-radius:14px;padding:8px;text-align:left;color:inherit;background:#ffffff06;display:flex;flex-direction:column;gap:8px;min-width:0;cursor:pointer}.pf4-template-option[aria-pressed=true]{border-color:#b29dff;box-shadow:0 0 0 1px #b29dff}.pf4-template-swatch{display:block;min-height:90px;border-radius:8px}.pf4-template-option strong{font-size:12px;padding:0 4px}.pf4-template-option small{font-size:10px;color:#aaa8bd;line-height:1.5;padding:0 4px 4px}.pf4-template-note{font-size:12px;color:#aaa8bd;line-height:1.5}.pf4-template-editor{margin:14px 0 24px}.pf4-template-editor .pf4-template-picker{grid-template-columns:1fr}.pf4-template-editor .pf4-template-option{display:grid;grid-template-columns:68px 1fr;align-items:center;column-gap:12px}.pf4-template-editor .pf4-template-swatch{min-height:50px;grid-row:span 2}.pf4-template-editor .pf4-template-option strong,.pf4-template-editor .pf4-template-option small{padding:0}.pf4-template-editor button.pf4-apply{width:100%;margin-top:12px}
+@media(max-width:540px){.pf4-template-picker{grid-template-columns:1fr}.pf4-template-option{display:grid;grid-template-columns:72px 1fr;column-gap:12px;align-items:center}.pf4-template-swatch{min-height:54px;grid-row:span 2}}
+
+/* PAGEFORGE V21 SHARED */
+
+/* Shared V21 cinematic finishing; scoped exclusively to generated websites. */
+.pf-site.pf6-site { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+.pf-site.pf6-site .pf4-nav { backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); transition:background .35s ease,box-shadow .35s ease; }
+.pf-site.pf6-site .pf4-action, .pf-site.pf6-site .pf4-nav-cta { position:relative; isolation:isolate; overflow:hidden; transition:transform .32s cubic-bezier(.2,.8,.2,1),box-shadow .32s ease,background .32s ease; }
+.pf-site.pf6-site .pf4-action::after, .pf-site.pf6-site .pf4-nav-cta::after { content:""; position:absolute; inset:-80% -40%; pointer-events:none; transform:translateX(-130%) rotate(24deg); background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent); transition:transform .8s cubic-bezier(.16,1,.3,1); }
+.pf-site.pf6-site .pf4-action:hover::after, .pf-site.pf6-site .pf4-nav-cta:hover::after { transform:translateX(130%) rotate(24deg); }
+.pf-site.pf6-site .pf4-action:hover, .pf-site.pf6-site .pf4-nav-cta:hover { transform:translateY(-3px); box-shadow:0 14px 38px rgba(0,0,0,.17); }
+.pf-site.pf6-site .pf4-action:focus-visible, .pf-site.pf6-site .pf4-nav-cta:focus-visible, .pf-site.pf6-site a:focus-visible, .pf-site.pf6-site button:focus-visible { outline:3px solid var(--pf-brand); outline-offset:4px; }
+.pf-site.pf6-site .pf4-media { overflow:hidden; isolation:isolate; }
+.pf-site.pf6-site .pf4-media img, .pf-site.pf6-site .pf4-gallery-card img { transition:transform 1.1s cubic-bezier(.16,1,.3,1),filter .8s ease; }
+.pf-site.pf6-site .pf4-media:hover img, .pf-site.pf6-site .pf4-gallery-card:hover img { transform:scale(1.045); }
+.pf-site.pf6-site .pf4-tile { transition:transform .4s cubic-bezier(.16,1,.3,1),border-color .3s ease,box-shadow .4s ease; }
+.pf-site.pf6-site .pf4-tile:hover { transform:translateY(-7px); box-shadow:0 24px 65px rgba(0,0,0,.12); }
+.pf-site.pf6-site .pf-faq details { transition:background .3s ease,border-color .3s ease; }
+.pf-site.pf6-site .pf-faq details[open] { border-color:var(--pf-brand); }
+.pf-site.pf6-site .pf-faq summary { cursor:pointer; }
+.pf-site.pf6-site .pf-faq summary:focus-visible { outline:3px solid var(--pf-brand); outline-offset:3px; }
+.pf-site.pf6-site .pf-faq details[open] .pf-faq-plus { transform:rotate(45deg); }
+.pf-site.pf6-site .pf-faq-plus { transition:transform .3s ease; }
+.pf-site.pf6-site .pf4-gallery-card { overflow:hidden; }
+.pf-site.pf6-site .pf4-gallery-card figcaption { transition:transform .35s ease; }
+.pf-site.pf6-site .pf4-gallery-card:hover figcaption { transform:translateY(-4px); }
+@media (prefers-reduced-motion:reduce) { .pf-site.pf6-site *, .pf-site.pf6-site *::before, .pf-site.pf6-site *::after { scroll-behavior:auto!important; animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; } }
+
+/* PAGEFORGE V21 | aether | managed: do not edit this region manually */
+
+/* AETHER — immersive technological product narrative */
+.pf-site.pf6-tech { --v21-accent:#c7f36a; --v21-ink:#0a1014; }
+.pf-site.pf6-tech .kind-hero { position:relative; isolation:isolate; overflow:hidden; min-height:min(850px,95svh); background:radial-gradient(ellipse at 83% 18%,rgba(125,200,255,.16),transparent 45%),radial-gradient(ellipse at 0% 90%,rgba(195,255,95,.09),transparent 44%),#080f15; color:#f3f7f6; }
+.pf-site.pf6-tech .kind-hero::before { content:""; position:absolute; inset:0; opacity:.19; pointer-events:none; background-image:linear-gradient(rgba(255,255,255,.11) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.11) 1px,transparent 1px); background-size:72px 72px; mask-image:linear-gradient(90deg,transparent,#000); }
+.pf-site.pf6-tech .kind-hero .pf4-inner { position:relative; z-index:1; gap:clamp(28px,5vw,92px); }
+.pf-site.pf6-tech .kind-hero .pf-copy h2 { font-size:clamp(3.5rem,7.2vw,8.2rem); line-height:.95; letter-spacing:-.075em; max-width:11ch; text-wrap:balance; }
+.pf-site.pf6-tech .kind-hero .pf-kicker { color:#c7f36a; }
+.pf-site.pf6-tech .kind-hero .pf4-media { border-radius:26px; transform:perspective(1100px) rotateY(-5deg) rotateX(2deg); box-shadow:0 45px 115px rgba(0,0,0,.55),0 0 0 1px rgba(190,241,255,.18); }
+.pf-site.pf6-tech .kind-hero .pf4-media::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(145deg,rgba(200,245,255,.16),transparent 45%,rgba(6,18,28,.24)); }
+.pf-site.pf6-tech .kind-features .pf4-tiles { gap:clamp(12px,2vw,26px); }
+.pf-site.pf6-tech .kind-features .pf4-tile { background:linear-gradient(150deg,rgba(165,205,220,.10),rgba(145,200,180,.025)); border:1px solid rgba(130,165,170,.17); border-radius:22px; min-height:220px; }
+.pf-site.pf6-tech .kind-features .pf4-tile:first-child { background:linear-gradient(135deg,rgba(199,243,106,.16),rgba(80,155,165,.07)); }
+.pf-site.pf6-tech .kind-stats .pf4-tile strong { font-variant-numeric:tabular-nums; letter-spacing:-.055em; }
+.pf-site.pf6-tech .kind-cta { background:radial-gradient(circle at 70% 30%,rgba(174,250,95,.2),transparent 42%),#101a1c; color:#f8fbf6; }
+.pf-site.pf6-tech .kind-cta .pf-copy h2 { font-size:clamp(3.2rem,7vw,7rem); letter-spacing:-.065em; }
+@media(max-width:820px){.pf-site.pf6-tech .kind-hero{min-height:0}.pf-site.pf6-tech .kind-hero .pf4-media{transform:none}.pf-site.pf6-tech .kind-hero .pf-copy h2{font-size:clamp(3.1rem,12vw,5.6rem)}}
+
+/* END PAGEFORGE V21 | aether */
+
+/* PAGEFORGE V21R RESPONSIVE FOUNDATION */
+
+
+/* V21 RESPONSIVE QUALITY FOUNDATION: generated sites only, all five families. */
+.pf-site.pf6-site { max-width:100%; min-width:0; overflow-x:clip; }
+.pf-site.pf6-site *, .pf-site.pf6-site *::before, .pf-site.pf6-site *::after { box-sizing:border-box; }
+.pf-site.pf6-site :is(.pf4-section,.pf4-inner,.pf4-copy,.pf-copy,.pf4-media,.pf4-tile,.pf4-gallery-card,.pf4-tiles,.pf4-gallery) { min-width:0; max-width:100%; }
+.pf-site.pf6-site :is(h1,h2,h3,p,blockquote) { overflow-wrap:break-word; }
+.pf-site.pf6-site :is(img,video,svg,canvas,iframe) { max-width:100%; }
+.pf-site.pf6-site img,.pf-site.pf6-site video { height:auto; }
+.pf-site.pf6-site .pf4-media :is(img,video),.pf-site.pf6-site .pf4-gallery-card :is(img,video) { width:100%; max-width:100%; }
+.pf-site.pf6-site :is(.pf4-tiles,.pf4-gallery) > * { min-width:0; }
+.pf-site.pf6-site :is(.pf4-action,.pf4-nav-cta,button,input,textarea,select) { max-width:100%; }
+.pf-site.pf6-site :is(input,textarea,select) { min-width:0; }
+.pf-site.pf6-site .pf4-copy h2,.pf-site.pf6-site .pf-copy h2 { text-wrap:balance; }
+@media (max-width:1023px) {
+ .pf-site.pf6-site .pf4-inner { max-width:100%; }
+ .pf-site.pf6-site :is(.pf4-tiles,.pf4-gallery) { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .pf-site.pf6-site .kind-split .pf4-inner { grid-template-columns:minmax(0,1fr)!important; }
+ .pf-site.pf6-site .kind-split .pf4-media { min-height:0; }
+ .pf-site.pf6-site .kind-hero .pf4-media { transform:none!important; }
+ .pf-site.pf6-commerce .kind-pricing .pf4-tile:nth-child(2) { transform:none!important; }
+}
+@media (max-width:767px) {
+ .pf-site.pf6-site .pf4-section .pf4-inner { width:100%; max-width:100%; padding-inline:clamp(16px,4.5vw,28px); }
+ .pf-site.pf6-site .pf4-section .pf4-copy h2,.pf-site.pf6-site .pf4-section .pf-copy h2 { font-size:clamp(2rem,9vw,4rem); line-height:1.04; letter-spacing:-.045em; }
+ .pf-site.pf6-site .kind-hero .pf4-copy h2,.pf-site.pf6-site .kind-hero .pf-copy h2 { font-size:clamp(2.35rem,10.5vw,4.35rem); line-height:1.01; }
+ .pf-site.pf6-site :is(.pf4-tiles,.pf4-gallery) { grid-template-columns:minmax(0,1fr)!important; }
+ .pf-site.pf6-site .pf4-tile { min-height:0; }
+ .pf-site.pf6-site .pf4-media { max-height:none; }
+ .pf-site.pf6-site .pf4-nav { max-width:100%; gap:10px; }
+ .pf-site.pf6-site .pf4-nav nav { min-width:0; flex-wrap:wrap; }
+ .pf-site.pf6-site .pf4-action { min-height:44px; white-space:normal; text-align:center; }
+ .pf-site.pf6-site .pf4-nav-cta { min-height:40px; white-space:normal; }
+ .pf-site.pf6-site .kind-hero { min-height:0; }
+ .pf-site.pf6-fashion .kind-hero .pf4-media,.pf-site.pf6-studio .kind-hero .pf4-media { min-height:0; height:clamp(380px,72svh,680px); }
+ .pf-site.pf6-fashion .kind-hero .pf4-copy,.pf-site.pf6-studio .kind-hero .pf4-copy { max-width:calc(100% - 32px); }
+ .pf-site.pf6-fashion .kind-hero .pf4-copy h2,.pf-site.pf6-studio .kind-hero .pf4-copy h2 { font-size:clamp(2.25rem,9.5vw,4rem); }
+ .pf-site.pf6-architecture .kind-hero .pf4-media { min-height:240px; height:42svh; }
+ .pf-site.pf6-commerce .kind-hero .pf4-media { border-radius:18px; }
+}
+@media (max-width:359px) {
+ .pf-site.pf6-site .pf4-section .pf4-inner { padding-inline:14px; }
+ .pf-site.pf6-site .pf4-section .pf4-copy h2,.pf-site.pf6-site .pf4-section .pf-copy h2 { font-size:clamp(1.85rem,9vw,2.4rem); }
+ .pf-site.pf6-site .pf4-nav { padding-inline:10px; }
+ .pf-site.pf6-site .pf4-nav-cta { font-size:11px; padding:8px; }
+}
+@media (hover:none),(pointer:coarse) {
+ .pf-site.pf6-site :is(.pf4-action,.pf4-nav-cta,.pf4-tile):hover { transform:none; }
+ .pf-site.pf6-site :is(.pf4-media,.pf4-gallery-card):hover img { transform:none; }
+ .pf-site.pf6-site .pf4-action::after,.pf-site.pf6-site .pf4-nav-cta::after { display:none; }
+}
+@media (prefers-reduced-motion:reduce) {
+ .pf-site.pf6-site *, .pf-site.pf6-site *::before,.pf-site.pf6-site *::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; }
+}
+
+
+/* END PAGEFORGE V21R RESPONSIVE FOUNDATION */
+
+/* PAGEFORGE V21R.1 EDIT MOBILE STACK START */
+/* ÉDIT mobile: text and image are sequential full-width blocks, never narrow side-by-side columns. */
+@media screen and (max-width: 767px) {
+  .pf-site.pf6-fashion .pf4-section.kind-hero,
+  .pf-site.pf6-fashion .pf4-section.kind-split {
+    min-height: 0 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .pf-site.pf6-fashion .pf4-section.kind-hero > .pf4-inner,
+  .pf-site.pf6-fashion .pf4-section.kind-split > .pf4-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: clamp(18px, 5vw, 32px) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: clamp(28px, 7vw, 48px) clamp(18px, 5vw, 30px) !important;
+    box-sizing: border-box !important;
+  }
+  .pf-site.pf6-fashion .pf4-section.kind-hero .pf4-copy,
+  .pf-site.pf6-fashion .pf4-section.kind-split .pf4-copy {
+    position: relative !important;
+    inset: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    float: none !important;
+    order: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .pf-site.pf6-fashion .pf4-section.kind-hero .pf4-media,
+  .pf-site.pf6-fashion .pf4-section.kind-split .pf4-media,
+  .pf-site.pf6-fashion .pf4-section.kind-hero .pf4-art,
+  .pf-site.pf6-fashion .pf4-section.kind-split .pf4-art {
+    position: relative !important;
+    inset: auto !important;
+    transform: none !important;
+    float: none !important;
+    order: 1 !important;
+    display: block !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: 4 / 5 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  .pf-site.pf6-fashion .pf4-section.kind-hero .pf4-media img,
+  .pf-site.pf6-fashion .pf4-section.kind-split .pf4-media img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+  .pf-site.pf6-fashion .pf4-section.kind-hero .pf4-copy h2,
+  .pf-site.pf6-fashion .pf4-section.kind-split .pf4-copy h2 {
+    max-width: 100% !important;
+    min-width: 0 !important;
+    font-size: clamp(2.15rem, 10vw, 3.75rem) !important;
+    line-height: 1.04 !important;
+    letter-spacing: -.055em !important;
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+    text-wrap: balance;
+  }
+  .pf-site.pf6-fashion .pf4-section.kind-hero .pf4-copy :is(p,.subtitle,.bodycopy),
+  .pf-site.pf6-fashion .pf4-section.kind-split .pf4-copy :is(p,.subtitle,.bodycopy) {
+    max-width: 100% !important;
+    overflow-wrap: anywhere;
+  }
+  /* Remove desktop photo overlay: mobile text sits on its own background. */
+  .pf-site.pf6-fashion .pf4-section.kind-hero .pf4-media::after,
+  .pf-site.pf6-fashion .pf4-section.kind-hero .pf4-media-overlay {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
+@media screen and (max-width: 359px) {
+  .pf-site.pf6-fashion .pf4-section.kind-hero > .pf4-inner,
+  .pf-site.pf6-fashion .pf4-section.kind-split > .pf4-inner { padding-inline: 16px !important; }
+  .pf-site.pf6-fashion .pf4-section.kind-hero .pf4-copy h2,
+  .pf-site.pf6-fashion .pf4-section.kind-split .pf4-copy h2 { font-size: clamp(1.9rem, 9.5vw, 2.35rem) !important; }
+}
+/* PAGEFORGE V21R.1 EDIT MOBILE STACK END */
+
+/* PAGEFORGE V25 GALLERY FULL COVER START */
+/* A figura mantém as proporções já definidas pelo tema e pelos breakpoints. */
+.pf4-site .pf4-section.kind-gallery .pf4-gallery-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+/* A imagem preenche toda a área do card, sem depender da altura calculada do grid. */
+.pf4-site .pf4-section.kind-gallery .pf4-gallery-card > img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+.pf4-site .pf4-section.kind-gallery .pf4-gallery-card > figcaption {
+  position: absolute;
+  z-index: 1;
+  inset: auto 0 0;
+}
+/* PAGEFORGE V25 GALLERY FULL COVER END */

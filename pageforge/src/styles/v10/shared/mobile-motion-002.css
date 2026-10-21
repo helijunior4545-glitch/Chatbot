@@ -1,0 +1,5 @@
+button,a,input,select,textarea{touch-action:manipulation}
+/* Modal: scroll the content, keep controls available, work at 320px and with keyboard */
+.modal-overlay{position:fixed!important;inset:0!important;z-index:1000!important;display:flex!important;justify-content:center!important;align-items:safe center!important;overflow-y:auto!important;overscroll-behavior:contain;padding:clamp(10px,3vw,28px)!important;scrollbar-gutter:stable}
+.modal-overlay>.modal{display:flex!important;flex-direction:column!important;width:min(850px,100%)!important;max-width:100%!important;max-height:min(90dvh,920px)!important;min-height:0!important;overflow:hidden!important;padding:0!important;border-radius:22px!important;background:#121927!important;border:1px solid #ffffff29!important;box-shadow:0 30px 120px #000a!important;animation:pf8-dialog-in .28s var(--pf8-ease) both}
+.modal .pf8-modal-scroll{min-height:0;flex:1 1 auto;overflow-y:auto!important;overflow-x:hidden;overscroll-behavior:contain;padding:clamp(18px,3vw,32px);scrollbar-width:thin;scrollbar-color:#8c92b1 #1b2333}

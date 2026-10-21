@@ -1,0 +1,21 @@
+
+/* Public render safety: prevent accidental overflow without flattening art direction */
+.pf6-site,.pf6-site main,.pf6-site .pf4-section,.pf6-site .pf4-inner{min-width:0;max-width:100%}
+.pf6-site img,.pf6-site video{max-width:100%}
+.pf6-site .pf4-copy,.pf6-site .pf4-media,.pf6-site .pf4-tiles,.pf6-site .pf4-gallery{min-width:0}
+.pf6-site .pf4-copy h2{overflow-wrap:break-word;text-wrap:balance}
+@media(max-width:900px){
+ .pf6-site .pf4-nav{padding:16px 20px!important;gap:12px;flex-wrap:wrap}
+ .pf6-site .pf4-nav nav{display:none!important}
+ .pf6-site .pf4-nav-cta{font-size:12px;white-space:nowrap}
+ .pf6-site .pf4-section:not(.kind-hero) .pf4-inner{padding-inline:clamp(18px,5vw,40px)!important}
+ .pf6-site .pf4-section .pf4-copy h2{font-size:clamp(2.5rem,8vw,5.5rem)!important;line-height:1.02!important}
+ .pf6-site .pf4-section.kind-hero .pf4-inner{min-width:0}
+ .pf6-site .pf4-section.kind-hero .pf4-copy h2{font-size:clamp(2.7rem,9vw,5.8rem)!important}
+ .pf6-site .pf4-tiles{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .pf6-site .pf4-gallery{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .pf6-site .pf4-form{width:100%;min-width:0}
+ .pf6-site .pf4-section.kind-split .pf4-inner{grid-template-columns:1fr!important}
+ .pf6-site .pf4-section.kind-split .pf4-media{min-height:280px;max-height:60svh}
+ .pf6-site .pf4-section.kind-hero .pf4-action{max-width:100%;white-space:normal}
+}

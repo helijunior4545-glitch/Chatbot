@@ -1,0 +1,3 @@
+
+.btn,.iconbtn{transition:transform var(--pf8-fast),background var(--pf8-fast),box-shadow var(--pf8-fast),border-color var(--pf8-fast)!important}
+.btn:active,.iconbtn:active,.pf4-template-option:active{transform:scale(.975)!important}.btn:disabled,.iconbtn:disabled{transform:none!important;cursor:not-allowed}

@@ -1,0 +1,81 @@
+/* PAGEFORGE AI V26 */
+.editor .pf-ai-panel{margin:12px 12px 16px;padding:14px;border:1px solid rgba(130,160,220,.27);border-radius:14px;background:linear-gradient(150deg,rgba(50,77,132,.14),rgba(30,36,55,.07));display:grid;gap:10px}
+.editor .pf-ai-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.editor .pf-ai-head strong{font-size:13px!important;letter-spacing:.01em}
+.editor .pf-ai-panel p{margin:0;font-size:11px;opacity:.76;line-height:1.5}
+.editor .pf-ai-panel textarea{box-sizing:border-box;width:100%;min-height:80px;resize:vertical;border-radius:9px;padding:10px;font:inherit;font-size:12px!important}
+.editor .pf-ai-panel select{max-width:140px;font-size:11px!important}
+.editor .pf-ai-actions{display:flex;gap:8px;flex-wrap:wrap}
+.editor .pf-ai-actions button{font-size:11px!important;min-height:33px}
+.editor .pf-ai-preview{border:1px solid rgba(130,160,220,.22);border-radius:10px;padding:10px;max-height:190px;overflow:auto;font-size:11px;white-space:pre-wrap;overflow-wrap:anywhere}
+.editor .pf-ai-error{color:#e9a4a4!important}
+.editor .pf-ai-success{color:#95d7b2!important}
+
+/* PAGEFORGE V26.4 AI TYPEWRITER START */
+/* Anima apenas o texto de ajuda do AI Copilot, sem afetar o input. */
+.editor .pf-ai-panel .pf-ai-typewriter {
+  max-width: 100%;
+  overflow: hidden;
+}
+.editor .pf-ai-panel .pf-ai-typewriter > span {
+  display: inline-block;
+  width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  border-right: 1.5px solid currentColor;
+  animation: pf-ai-help-type 5.2s steps(88, end) 0.35s forwards,
+             pf-ai-help-caret .72s step-end infinite;
+}
+@keyframes pf-ai-help-type { from { width: 0; } to { width: 100%; } }
+@keyframes pf-ai-help-caret { 50% { border-color: transparent; } }
+/* Em paineis estreitos, prioriza leitura integral sem corte. */
+@media (max-width: 1150px) {
+  .editor .pf-ai-panel .pf-ai-typewriter > span {
+    width: auto;
+    white-space: normal;
+    border-right: 0;
+    animation: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .editor .pf-ai-panel .pf-ai-typewriter > span {
+    width: auto;
+    white-space: normal;
+    border-right: 0;
+    animation: none;
+  }
+}
+/* PAGEFORGE V26.4 AI TYPEWRITER END */
+
+/* PAGEFORGE V26.5 AI TYPEWRITER WRAP START */
+/* O texto é revelado pelo React, não por width: 0; pode quebrar em qualquer largura. */
+.editor .pf-ai-panel .pf-ai-typewriter.pf-ai-typewriter-wrap,
+.editor .pf-ai-panel .pf-ai-typewriter.pf-ai-typewriter-wrap > span {
+  width: auto !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+  word-break: normal !important;
+  border-right: 0 !important;
+  animation: none !important;
+}
+.editor .pf-ai-panel .pf-ai-typewriter.pf-ai-typewriter-wrap {
+  display: block !important;
+  min-width: 0;
+  line-height: 1.55;
+}
+.editor .pf-ai-panel .pf-ai-typewriter .pf-ai-typewriter-caret {
+  display: inline !important;
+  margin-left: 1px;
+  color: currentColor;
+  opacity: 1;
+  animation: pf-ai-wrap-caret .75s step-end infinite !important;
+}
+@keyframes pf-ai-wrap-caret { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .editor .pf-ai-panel .pf-ai-typewriter .pf-ai-typewriter-caret { animation: none !important; }
+}
+/* PAGEFORGE V26.5 AI TYPEWRITER WRAP END */

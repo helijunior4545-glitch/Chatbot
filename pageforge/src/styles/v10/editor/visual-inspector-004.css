@@ -1,0 +1,7 @@
+
+.editor-stage [data-pf-field]{cursor:crosshair;transition:outline-color .14s,outline-offset .14s}
+.editor-stage [data-pf-field]:hover{outline:2px dashed #a397ff;outline-offset:4px}
+.editor-stage [data-pf-block]{cursor:pointer}
+.editor-stage [data-pf-block]:hover:not(:has([data-pf-field]:hover)){outline:1px dashed #a397ff55;outline-offset:-3px}
+.editor-stage .pf7-canvas-selected{outline:2px solid #a397ff!important;outline-offset:-3px;position:relative}
+.editor-stage .pf7-canvas-selected:after{content:'EDITING THIS SECTION';position:absolute;top:0;left:0;z-index:15;background:#7164d9;color:#fff;font:700 10px/1.5 Arial,sans-serif;letter-spacing:.09em;padding:5px 8px;pointer-events:none}

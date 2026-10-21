@@ -1,0 +1,15 @@
+/* PAGEFORGE V25.2 — somente interface do editor; nao afeta preview nem sites. */
+.editor .editor-top .editor-heading strong { font-size:13px!important; }
+.editor .editor-top .editor-heading small { font-size:10px!important; }
+.editor .editor-top :is(button, .btn, .iconbtn, select, input) { font-size:12px!important; }
+.editor .editor-sidebar, .editor .inspector { font-size:12px; }
+.editor .editor-sidebar :is(button, input, select, textarea, label),
+.editor .inspector :is(button, input, select, textarea, label) { font-size:12px!important; }
+.editor .editor-sidebar :is(h2,h3,strong),
+.editor .inspector :is(h2,h3,strong) { font-size:13px!important; }
+.editor .editor-sidebar :is(small,.muted),
+.editor .inspector :is(small,.muted),
+.editor .pf5-hint { font-size:11px!important; }
+.editor .editor-tabs button { font-size:11px!important; }
+.editor .inspector .pf5-recipe-switch button { font-size:11px!important; }
+/* Mantem dimensoes dos controles e nao altera .render-root/.pf-site. */

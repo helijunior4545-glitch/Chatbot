@@ -1,0 +1,3 @@
+
+/* Actual small viewport for chrome, separate from renderer width */
+@media(max-width:720px){.modal-overlay{padding:10px!important}.modal-overlay>.modal{max-height:calc(100dvh - 20px)!important;border-radius:16px!important}.modal .pf8-modal-footer{padding:12px 16px!important}.modal .pf8-modal-footer .btn{flex:1 1 120px}.pf4-template-picker{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}.pf4-template-option{min-height:180px}.pf4-template-option .pf4-template-swatch{height:105px!important;min-height:105px}.editor-top-actions{scrollbar-width:thin}.editor-sidebar,.inspector{max-width:100%}}

@@ -1,0 +1,54 @@
+
+/* Responsive pages: use the actual renderer width, including the editor's simulated mobile frame. */
+.pf6-site{container-type:inline-size;--pf8-gutter:clamp(18px,4.5cqw,76px);width:100%;max-width:100%;overflow-x:clip;overflow-wrap:normal}
+.pf6-site,.pf6-site *{box-sizing:border-box}.pf6-site .pf4-section,.pf6-site .pf4-inner,.pf6-site .pf4-copy,.pf6-site .pf4-media,.pf6-site .pf4-tiles,.pf6-site .pf4-gallery,.pf6-site .pf4-tile{min-width:0;max-width:100%}
+.pf6-site img,.pf6-site video,.pf6-site iframe{display:block;max-width:100%}.pf6-site .pf4-copy h2,.pf6-site .pf4-copy p{overflow-wrap:break-word;hyphens:auto}
+.pf6-site .pf4-copy h2{text-wrap:balance}.pf6-site .pf4-copy .bodycopy,.pf6-site .pf4-copy .subtitle{line-height:1.5}
+.pf6-site .pf4-action,.pf6-site .pf4-nav-cta{transition:transform .22s var(--pf8-ease),filter .22s,box-shadow .22s;max-width:100%;white-space:normal;text-align:center}
+.pf6-site .pf4-action:hover,.pf6-site .pf4-nav-cta:hover{transform:translateY(-2px);filter:brightness(1.08)}.pf6-site .pf4-action:active{transform:translateY(0) scale(.985)}
+.pf6-site .pf4-gallery-card img,.pf6-site .pf4-media img{transition:transform .55s var(--pf8-ease)}.pf6-site .pf4-gallery-card:hover img{transform:scale(1.035)}
+/* Tablet and narrow editor canvas — container queries, not browser viewport media queries. */
+@container (max-width:900px){
+ .pf4-nav{padding:16px var(--pf8-gutter)!important;gap:12px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;flex-wrap:wrap!important}
+ .pf4-nav nav{display:none!important}.pf4-nav-cta{font-size:12px!important;padding:10px 14px!important;max-width:50%}
+ .pf4-section:not(.kind-hero) .pf4-inner{padding-inline:var(--pf8-gutter)!important}
+ .pf4-section .pf4-inner{max-width:100%!important}
+ .pf4-section.kind-split .pf4-inner,.pf4-section[data-recipe="editorial-split"] .pf4-inner,.pf4-section[data-recipe="product-stage"] .pf4-inner,.pf4-section[data-recipe="type-monument"] .pf4-inner,.pf4-section.kind-hero .pf4-inner{grid-template-columns:minmax(0,1fr)!important}
+ .pf4-section .pf4-tiles,.pf4-section .pf4-gallery{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .pf4-section.kind-split .pf4-media{width:100%!important;min-height:280px;max-height:58svh}
+ .pf4-section .pf4-copy h2{font-size:clamp(2.3rem,7cqw,5.2rem)!important;line-height:1.03!important}
+ .pf4-section.kind-hero .pf4-copy h2{font-size:clamp(2.6rem,8cqw,5.4rem)!important;line-height:.99!important}
+ .pf4-section .pf4-form{width:100%;max-width:100%;min-width:0}
+ .pf4-section .pf4-media{max-width:100%;transform:none!important}
+}
+@container (max-width:600px){
+ .pf4-nav{padding:12px 18px!important;min-height:64px!important}.pf4-nav a{max-width:100%;overflow-wrap:anywhere}.pf4-nav-cta{font-size:11px!important;padding:9px 10px!important}
+ .pf4-section:not(.kind-hero) .pf4-inner{padding:clamp(48px,13cqw,76px) 20px!important}
+ .pf4-section .pf4-copy h2{font-size:clamp(2.05rem,10cqw,3.7rem)!important;letter-spacing:-.05em!important;max-width:100%!important}
+ .pf4-section.kind-hero .pf4-copy h2{font-size:clamp(2.3rem,10.5cqw,4rem)!important;max-width:100%!important}
+ .pf4-section .pf4-tiles,.pf4-section .pf4-gallery{grid-template-columns:minmax(0,1fr)!important}
+ .pf4-section .pf4-tile{padding:22px!important}.pf4-section .pf4-gallery-card{width:100%!important;min-width:0!important}
+ .pf4-section.kind-hero .pf4-inner{min-height:0;gap:26px;padding:100px 20px 55px!important}
+ .pf4-section.kind-hero .pf4-copy{min-width:0;max-width:100%}.pf4-section.kind-hero .pf4-media{width:100%!important;max-width:100%!important}
+ .pf4-section.kind-hero .pf4-action{max-width:100%;min-height:44px}
+ .pf4-section .pf4-form input,.pf4-section .pf4-form textarea,.pf4-section .pf4-form select{font-size:16px!important;max-width:100%}
+ .pf4-section .pf4-media img{width:100%;height:100%;object-fit:cover}
+ /* Fashion and Studio keep the art-directed cover, but position copy in a readable mobile-safe area */
+ .pf6-fashion .pf4-section.kind-hero,.pf6-studio .pf4-section.kind-hero{min-height:620px!important;min-height:max(620px,88svh)!important}
+ .pf6-fashion .pf4-section.kind-hero .pf4-inner,.pf6-studio .pf4-section.kind-hero .pf4-inner{display:block!important;min-height:inherit!important;padding:0!important;position:relative!important}
+ .pf6-fashion .pf4-section.kind-hero .pf4-media,.pf6-studio .pf4-section.kind-hero .pf4-media{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;border-radius:0!important;max-height:none!important}
+ .pf6-fashion .pf4-section.kind-hero .pf4-copy,.pf6-studio .pf4-section.kind-hero .pf4-copy{position:absolute!important;top:auto!important;right:18px!important;left:18px!important;bottom:clamp(45px,12cqw,85px)!important;width:auto!important;max-width:none!important;padding:0!important;transform:none!important;z-index:5!important}
+ .pf6-fashion .pf4-section.kind-hero .pf4-copy h2,.pf6-studio .pf4-section.kind-hero .pf4-copy h2{font-size:clamp(2.5rem,10.4cqw,4.25rem)!important;max-width:13ch!important}
+ .pf6-fashion .pf4-section.kind-hero .pf4-media:after,.pf6-studio .pf4-section.kind-hero .pf4-media:after{content:'';position:absolute;inset:40% 0 0;pointer-events:none;background:linear-gradient(transparent,#0009)}
+ /* Architectural, commerce and technology: distinct mobile compositions */
+ .pf6-architecture .pf4-section.kind-hero .pf4-inner{padding-top:110px!important}.pf6-architecture .pf4-section.kind-hero .pf4-media{height:42svh!important;min-height:230px!important;aspect-ratio:4/3}
+ .pf6-commerce .pf4-section.kind-hero .pf4-inner{padding-top:100px!important}.pf6-commerce .pf4-section.kind-hero .pf4-media{border-radius:20px!important;box-shadow:8px 8px 0 #cad9e8!important}
+ .pf6-tech .pf4-section.kind-hero .pf4-inner{padding-top:115px!important}.pf6-tech .pf4-section.kind-hero .pf4-media{border-radius:18px!important}
+ .pf4-section.kind-footer .pf4-inner{gap:20px}.pf4-section.kind-footer a{min-height:42px;display:inline-flex;align-items:center}
+}
+@container (max-width:360px){
+ .pf4-section:not(.kind-hero) .pf4-inner{padding-inline:15px!important}.pf4-section.kind-hero .pf4-inner{padding-inline:15px!important}
+ .pf4-nav{padding-inline:12px!important}.pf4-nav-cta{font-size:10px!important;padding:8px!important}
+ .pf4-section .pf4-copy h2{font-size:clamp(1.9rem,10cqw,2.7rem)!important}
+ .pf6-fashion .pf4-section.kind-hero .pf4-copy,.pf6-studio .pf4-section.kind-hero .pf4-copy{left:14px!important;right:14px!important}
+}

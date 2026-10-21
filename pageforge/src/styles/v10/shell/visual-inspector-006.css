@@ -1,0 +1,8 @@
+
+/* Unified premium studio chrome — dashboard, login, analytics and leads */
+.app-shell{background:#090e18!important;color:#eaf0fc}
+.app-nav{background:linear-gradient(180deg,#101827,#0c111c)!important;border-right:1px solid #ffffff15!important;box-shadow:8px 0 35px #0002}
+.app-nav .brand{font-weight:800;letter-spacing:-.055em}
+.app-nav a{border-radius:11px!important;transition:background .18s,transform .18s}
+.app-nav a:hover{background:#ffffff0d!important;transform:translateX(2px)}
+.app-main{background:radial-gradient(ellipse at 85% -5%,#1e2943 0%,#0d1320 44%,#0a0f19 90%)!important;min-width:0}

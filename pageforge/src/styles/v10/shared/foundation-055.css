@@ -1,0 +1,8 @@
+.kind-cta h2,.kind-cta .subtitle,.kind-cta .bodycopy{margin-left:auto;margin-right:auto}
+.kind-footer{min-height:210px;padding-top:55px;padding-bottom:55px;border-top:1px solid #ffffff20}.kind-footer h2{font-size:clamp(25px,3vw,40px)}
+.faq-list details{transition:background .2s}.faq-list details:hover{background:#ffffff08}.faq-list summary{padding:8px 0;font-size:17px}
+.lead-form input,.lead-form textarea{border-radius:12px;padding:16px}.lead-form button{border-radius:999px;padding:17px;cursor:pointer}
+@media(max-width:1250px){.site-thumb iframe{transform:scale(.23)}.editor-body{grid-template-columns:245px minmax(0,1fr) 260px}}
+@media(max-width:950px){.kind-hero .render-inner,.kind-split .render-inner{grid-template-columns:1fr}.kind-hero{min-height:0}.kind-hero .render-image{height:360px;transform:none}.kind-split .render-image{min-height:280px}.editor-body{grid-template-columns:210px minmax(0,1fr)}.inspector{display:none}}
+@media(max-width:760px){.site-thumb iframe{transform:scale(.26)}.site-grid{grid-template-columns:1fr}.render-section{padding:70px 24px}.kind-hero h2{font-size:clamp(43px,11vw,67px)}.kind-hero .render-image{height:290px}.feature-grid{grid-template-columns:1fr}.editor-top{padding:0 10px}.editor-stage{padding:15px}.editor-body{grid-template-columns:160px minmax(0,1fr)}.catalog{grid-template-columns:1fr}.editor-top-actions{gap:3px}.editor-top-actions .btn{font-size:0;padding:9px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}

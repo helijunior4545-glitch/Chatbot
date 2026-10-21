@@ -1,0 +1,10 @@
+export type BlockKind = 'hero'|'features'|'split'|'stats'|'testimonials'|'pricing'|'faq'|'cta'|'gallery'|'contact'|'footer';
+export type Block = {id:string;kind:BlockKind;title:string;subtitle:string;body:string;image:string;buttonText:string;buttonUrl:string;items:string[];background:string;foreground:string;align:'left'|'center';enabled:boolean;recipe?:string;titleColor?:string;subtitleColor?:string;bodyColor?:string};
+export type Theme = {primary:string;surface:string;text:string;radius:number;font:string;direction?:'cinematic'|'editorial'|'luxury'|'bold'|'product'|'organic'};
+export type Site = {id:string;workspaceId:string;name:string;slug:string;description:string;theme:Theme;blocks:Block[];published:boolean;publishedSnapshot:PublishedSnapshot|null;updatedAt:string;createdAt:string;version:number};
+export type PublishedSnapshot = {name:string;slug:string;description:string;theme:Theme;blocks:Block[];publishedAt:string;version:number};
+export type Workspace = {id:string;ownerId:string;name:string;createdAt:string};
+export type Lead = {id:string;siteId:string;workspaceId:string;name:string;email:string;message:string;createdAt:string};
+export type Event = {id:string;siteId:string;workspaceId:string;type:'page_view'|'cta_click'|'lead';createdAt:string};
+export type Actor = {id:string;name:string;email:string};
+export type Store = {workspaces:Workspace[];sites:Site[];leads:Lead[];events:Event[]};

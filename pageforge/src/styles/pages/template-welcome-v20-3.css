@@ -1,0 +1,41 @@
+/* PageForge V20.3 — editorial template chooser. Dashboard-only. */
+.pf12-shell .pf-dash-create-dialog{position:relative;width:min(1000px,100%);max-height:min(91dvh,940px);border:1px solid #56654b!important;border-radius:24px!important;background:linear-gradient(135deg,#252c27 0%,#151a18 40%,#101413 100%)!important;color:#f3f1ea!important;box-shadow:0 36px 120px #000c,0 0 0 1px #d9ff6612!important;isolation:isolate}
+.pf12-shell .pf-dash-create-dialog:before{content:'';position:absolute;inset:0 0 auto;height:150px;background:radial-gradient(ellipse at 85% 0%,#d9ff6620,transparent 65%);pointer-events:none;z-index:-1}
+.pf12-shell .pf-dash-create-dialog .pf-dash-dialog-head{padding:30px 36px 14px;align-items:flex-start}
+.pf12-shell .pf-dash-create-dialog .pf-dash-kicker{color:#d9ff66!important;letter-spacing:.15em;font-size:12px!important}
+.pf12-shell .pf-dash-create-dialog .pf-dash-dialog-head h2{font-size:clamp(29px,4vw,43px)!important;line-height:1.08;letter-spacing:-.055em;color:#f3f1ea!important;margin:12px 0!important}
+.pf12-shell .pf-dash-create-dialog .pf-dash-dialog-head p{color:#b8c1b9!important;font-size:16px!important;line-height:1.6;max-width:650px}
+.pf12-shell .pf-dash-create-dialog .pf-dash-period{color:#d9ff66!important}
+.pf12-shell .pf-dash-create-dialog .pf-dash-close{width:42px;height:42px;background:#252c29!important;border:1px solid #4b554d!important;border-radius:13px!important;color:#f3f1ea!important}
+.pf12-shell .pf-dash-create-dialog .pf-dash-close:hover{background:#d9ff66!important;color:#111512!important}
+.pf12-shell .pf-dash-create-dialog .pf-dash-dialog-scroll{padding:5px 36px 30px;scrollbar-color:#64775a #151a18}
+.pf12-shell .pf-dash-create-dialog .pf-dash-field{font-size:15px!important;color:#e2e9e1!important;gap:11px;margin:13px 0 25px}
+.pf12-shell .pf-dash-create-dialog .pf-dash-field input{height:56px;border:1px solid #526052!important;border-radius:13px!important;background:#101613!important;color:#fff!important;font-size:16px!important;padding:13px 17px}
+.pf12-shell .pf-dash-create-dialog .pf-dash-field input:focus{border-color:#d9ff66!important;box-shadow:0 0 0 4px #d9ff6622!important}
+.pf12-shell .pf-dash-create-dialog .pf-dash-field input::placeholder{color:#89978a!important}
+.pf12-shell .pf-dash-create-dialog .pf-dash-chooser-title{margin:10px 0 16px}
+.pf12-shell .pf-dash-create-dialog .pf-dash-chooser-title strong{font-size:17px!important;color:#f3f1ea}
+.pf12-shell .pf-dash-create-dialog .pf-dash-chooser-title span{font-size:14px!important;color:#aebbad!important}
+.pf12-shell .pf-dash-create-dialog .pf-dash-chooser{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.pf12-shell .pf-dash-create-dialog .pf-dash-chooser-option{padding:9px!important;gap:11px!important;border:1px solid #414b43!important;border-radius:17px!important;background:#202723!important;color:#f3f1ea!important;box-shadow:0 8px 24px #0003;transition:transform .25s,border-color .25s,box-shadow .25s,background .25s}
+.pf12-shell .pf-dash-create-dialog .pf-dash-chooser-option:hover{transform:translateY(-4px);border-color:#b6d17a!important;background:#293128!important;box-shadow:0 16px 34px #0007}
+.pf12-shell .pf-dash-create-dialog .pf-dash-chooser-option.selected{border:2px solid #d9ff66!important;padding:8px!important;background:#293225!important;box-shadow:0 0 0 3px #d9ff6620,0 16px 35px #0007!important}
+.pf12-shell .pf-dash-create-dialog .pf-dash-chooser-option .pf-dash-template-art{aspect-ratio:1.55;border-radius:11px}
+.pf12-shell .pf-dash-create-dialog .pf-dash-chooser-label{padding:2px 7px 8px}
+.pf12-shell .pf-dash-create-dialog .pf-dash-chooser-label strong{font-size:16px!important;line-height:1.35;color:#f3f1ea!important}
+.pf12-shell .pf-dash-create-dialog .pf-dash-chooser-label small{font-size:13px!important;line-height:1.4;color:#b6c2b4!important;margin-top:5px}
+.pf12-shell .pf-dash-create-dialog .pf-dash-selected-check{width:30px;height:30px;top:17px;right:17px;background:#d9ff66!important;color:#101413!important;box-shadow:0 3px 12px #0008}
+.pf12-shell .pf-dash-create-dialog .pf-dash-dialog-footer{padding:20px 36px!important;border-top:1px solid #3b493c!important;background:#171e1a!important;gap:12px}
+.pf12-shell .pf-dash-create-dialog .pf-dash-dialog-footer button{min-height:49px;font-size:15px!important;border-radius:12px;padding:12px 19px}
+.pf12-shell .pf-dash-create-dialog .pf-dash-dialog-footer .pf-dash-primary{background:#d9ff66!important;color:#121713!important;border:1px solid #d9ff66!important;font-weight:750}
+.pf12-shell .pf-dash-create-dialog .pf-dash-dialog-footer .pf-dash-primary:hover:not(:disabled){background:#edffae!important;box-shadow:0 0 24px #d9ff6638}
+.pf12-shell .pf-dash-create-dialog .pf-dash-dialog-footer .pf-dash-primary:disabled{opacity:.48;cursor:not-allowed}
+.pf12-shell .pf-dash-create-dialog .pf-dash-dialog-footer .pf-dash-outline{background:#272e29!important;color:#f3f1ea!important;border:1px solid #5c685d!important}
+.pf12-shell .pf-dash-create-dialog button:focus-visible{outline:3px solid #d9ff66!important;outline-offset:3px}
+.pf12-shell .pf-dash-backdrop:has(.pf-dash-create-dialog){background:#060a08d9!important;backdrop-filter:blur(14px);animation:pf203fade .3s ease both}
+.pf12-shell .pf-dash-create-dialog{animation:pf203rise .32s cubic-bezier(.2,.8,.2,1) both}
+@keyframes pf203fade{from{opacity:0}to{opacity:1}}
+@keyframes pf203rise{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:800px){.pf12-shell .pf-dash-create-dialog .pf-dash-chooser{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.pf12-shell .pf-dash-create-dialog{max-height:94dvh;border-radius:18px!important}.pf12-shell .pf-dash-create-dialog .pf-dash-dialog-head{padding:21px 20px 11px}.pf12-shell .pf-dash-create-dialog .pf-dash-dialog-scroll{padding:4px 20px 20px}.pf12-shell .pf-dash-create-dialog .pf-dash-dialog-footer{padding:15px 20px!important}.pf12-shell .pf-dash-create-dialog .pf-dash-chooser{gap:10px}.pf12-shell .pf-dash-create-dialog .pf-dash-chooser-label strong{font-size:14px!important}.pf12-shell .pf-dash-create-dialog .pf-dash-chooser-label small{font-size:12px!important}}
+@media(prefers-reduced-motion:reduce){.pf12-shell .pf-dash-create-dialog,.pf12-shell .pf-dash-backdrop:has(.pf-dash-create-dialog){animation:none!important}.pf12-shell .pf-dash-create-dialog *{transition:none!important}}

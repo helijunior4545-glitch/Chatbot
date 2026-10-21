@@ -1,0 +1,15 @@
+/* PageForge V19.1 — dashboard hero artwork. Does not affect user sites. */
+.pf12-shell .pf-dashboard .pf-dash-hero,
+.pf-studio .pf-dashboard .pf-dash-hero,
+.pf-dashboard .pf-dash-hero{
+  background-image:linear-gradient(90deg,#101213 0%,rgba(16,18,19,.98) 27%,rgba(16,18,19,.88) 48%,rgba(16,18,19,.12) 100%),url('/pageforge-assets/pageforge-dashboard-hero-v19-1.webp')!important;
+  background-color:#101213!important;
+  background-position:center,right center!important;
+  background-size:cover,auto 100%!important;
+  background-repeat:no-repeat!important;
+  border-color:#d9ff6630!important;
+}
+.pf-dashboard .pf-dash-hero-copy{position:relative;z-index:2}
+.pf-dashboard .pf-dash-hero .pf12-hero-message{z-index:2;background:#171c18d9!important;border-color:#d9ff6640!important;color:#f3f1ea!important}
+@media(max-width:1100px){.pf-dashboard .pf-dash-hero{background-image:linear-gradient(90deg,#101213 0%,rgba(16,18,19,.97) 42%,rgba(16,18,19,.45) 100%),url('/pageforge-assets/pageforge-dashboard-hero-v19-1.webp')!important}}
+@media(max-width:850px){.pf-dashboard .pf-dash-hero{background-image:linear-gradient(90deg,#101213 0%,rgba(16,18,19,.92) 100%),url('/pageforge-assets/pageforge-dashboard-hero-v19-1.webp')!important}}

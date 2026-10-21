@@ -1,0 +1,3 @@
+/* PageForge V8 — Mobile-first art direction + accessible studio motion */
+:root{--pf8-ease:cubic-bezier(.2,.8,.2,1);--pf8-fast:160ms;--pf8-normal:280ms;--pf8-slow:440ms}
+html{scroll-padding-top:72px}body{min-width:0}

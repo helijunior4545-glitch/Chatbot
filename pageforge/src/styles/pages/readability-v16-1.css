@@ -1,0 +1,34 @@
+/* PageForge V16.1 — readable workspace typography at 100% zoom.
+   Scoped to the application chrome; does not change the websites being designed. */
+:root{--pf-ui-font-min:14px}
+/* App shell, dashboard, project cards and visual editor */
+.editor,.editor-sidebar,.inspector,.editor-top,.editor-top-actions,.editor-tabs,
+.pf-dash,.dashboard,.shell,.sidebar,.properties,.catalog,.layers,
+.pf15-invite,.pf15-tour-tip{font-size:15px;line-height:1.5}
+.editor :is(button,input,textarea,select),.editor-sidebar :is(button,input,textarea,select),
+.inspector :is(button,input,textarea,select),.dashboard :is(button,input,textarea,select),
+.pf-dash :is(button,input,textarea,select),.shell :is(button,input,textarea,select){font-size:max(14px,1em)}
+/* Explicit small-font rules previously at 10–12px */
+.editor :is(small,.muted,.pf5-hint,.pf4-template-note,.pf-design-description,.pf7-inspector-tip),
+.editor .pf16-color-heading small,.editor .pf16-color-panel p,
+.editor .pf16-color-control button,.editor .pf16-canvas-grip,
+.editor .pf5-section-inspector .pf5-hint,
+.editor .pf5-recipe-switch button,
+.editor .pf5-section-inspector .pf5-field,
+.editor .pf16-color-control span,
+.editor .catalog small,.editor .sidebar-heading small,
+.editor .layer-label span,.editor .inspector-kind,
+.pf-dash small,.dashboard small,.shell small,.pf15-invite small,
+.pf15-tour-tip .pf15-tour-top,.pf15-tour-tip .pf15-tour-progress{font-size:14px;line-height:1.55}
+.editor .pf16-color-heading strong,.editor .pf5-template-chooser strong{font-size:16px}
+.editor .pf16-color-control{grid-template-columns:minmax(0,1fr) 42px 58px;gap:8px}
+.editor .pf16-color-control button{min-height:34px}
+.editor .pf5-recipe-switch button{font-size:14px;min-height:48px}
+.editor .pf16-canvas-grip{font-size:13px}
+.editor .pf16-canvas-tools button{width:38px;height:38px}
+.editor :is(input,textarea,select){min-height:39px}
+.editor .properties label{line-height:1.55}
+/* Responsive: avoid toolbar overflow when labels grow. */
+@media(max-width:1100px){.editor-top-actions{flex-wrap:wrap;row-gap:7px}.editor-top{height:auto;min-height:64px}}
+/* Keep site preview independent: the generated page preserves its own typography. */
+.editor-stage .render-root,.editor-stage .pf-site,.pf-full-preview .pf-site{font-size:initial}

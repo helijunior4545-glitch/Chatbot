@@ -1,0 +1,33 @@
+/* PAGEFORGE V20.1 — dashboard readability, scoped to application chrome. */
+.pf12-shell .pf-dashboard{font-size:16px;line-height:1.55}
+.pf12-shell .pf-dashboard :is(button,input,select,textarea){font-size:15px;line-height:1.45}
+.pf12-shell .pf-dashboard :is(.pf-dash-kicker,.pf-dash-workspace-label small,.pf-dash-breadcrumb,.pf-dash-breadcrumb-tag,.pf-dash-account-head,.pf-dash-chooser-title span){font-size:14px!important;line-height:1.45!important;letter-spacing:.07em}
+.pf12-shell .pf-dashboard :is(.pf-dash-stat-label,.pf-dash-section-heading p,.pf-dash-card-top p,.pf-dash-card-meta,.pf-dash-card-footer,.pf-dash-new-card>span,.pf-dash-template-bottom small,.pf-dash-chooser-label small,.pf-dash-dialog-head p,.pf-dash-field,.pf-dash-error,.pf-dash-status,.pf-dash-sort select,.pf-dash-filter button,.pf-dash-template-bottom strong,.pf-dash-chooser-label strong){font-size:15px!important;line-height:1.5!important}
+.pf12-shell .pf-dashboard :is(.pf-dash-ghost,.pf-dash-primary,.pf-dash-outline,.pf-dash-edit,.pf-dash-new-link,.pf-dash-danger,.pf-dash-search input){font-size:16px!important;line-height:1.4!important}
+.pf12-shell .pf-dashboard .pf-dash-workspace-label strong{font-size:17px!important}
+.pf12-shell .pf-dashboard .pf-dash-card-top h3{font-size:19px!important;line-height:1.3!important}
+.pf12-shell .pf-dashboard .pf-dash-section-heading h2{font-size:clamp(29px,2.9vw,39px)!important;line-height:1.18!important}
+.pf12-shell .pf-dashboard .pf-dash-section-heading h2>span:not(.pf-dash-period){font-size:14px!important}
+.pf12-shell .pf-dashboard .pf-dash-hero p{font-size:17px!important;line-height:1.65!important}
+.pf12-shell .pf-dashboard .pf-dash-hero h1{font-size:clamp(40px,4.5vw,72px)!important}
+.pf12-shell .pf-dashboard .pf-dash-stat strong{line-height:1.18}
+.pf12-shell .pf-dashboard .pf-dash-stat{min-height:112px}
+.pf12-shell .pf-dashboard .pf-dash-stat-label{display:block;margin-top:5px}
+.pf12-shell .pf-dashboard .pf-dash-card-body{padding:20px}
+.pf12-shell .pf-dashboard .pf-dash-card-meta{margin:15px 0}
+.pf12-shell .pf-dashboard .pf-dash-toolbar :is(button,select,input){min-height:38px}
+.pf12-shell .pf-dashboard .pf-dash-search{min-height:46px}
+.pf12-shell .pf-dashboard .pf-dash-hero-actions :is(button,a){min-height:44px}
+/* Sidebar and app header — excludes rendered site canvas. */
+.pf12-shell .pf-sidebar :is(a,button,.pf-nav-item,.pf-sidebar-label),
+.pf12-shell .pf-topbar :is(button,span,a,.pf-top-user),
+.pf12-shell .pf-sidebar :is(small,.pf-nav-caption){font-size:15px!important;line-height:1.45!important}
+.pf12-shell .pf-sidebar .brand{font-size:20px!important}
+.pf12-shell .pf-sidebar :is(a,button){min-height:40px}
+@media(max-width:650px){
+ .pf12-shell .pf-dashboard .pf-dash-hero h1{font-size:clamp(35px,8vw,49px)!important}
+ .pf12-shell .pf-dashboard .pf-dash-card-body{padding:16px}
+ .pf12-shell .pf-dashboard .pf-dash-hero p{font-size:16px!important}
+ .pf12-shell .pf-dashboard .pf-dash-toolbar-right{gap:8px}
+}
+@media(prefers-reduced-motion:reduce){.pf12-shell .pf-dashboard *{scroll-behavior:auto!important}}

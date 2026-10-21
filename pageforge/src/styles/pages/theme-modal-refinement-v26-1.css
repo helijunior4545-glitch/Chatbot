@@ -1,0 +1,38 @@
+/* PageForge V26.1 — apenas modal de criacao e escolha de temas. */
+/* Versao atual: Dashboard com pf-dash-create-dialog. */
+.pf-dash-backdrop .pf-dash-create-dialog { font-size: 13px !important; line-height: 1.55 !important; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-dialog-head { padding: clamp(22px,3vw,34px) !important; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-dialog-head h2 { font-size: clamp(24px,2.5vw,32px) !important; line-height: 1.16 !important; letter-spacing: -.035em; margin-block: 9px 11px !important; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-dialog-head p { font-size: 13px !important; line-height: 1.65 !important; max-width: 56ch; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-kicker { font-size: 10px !important; letter-spacing: .13em !important; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-dialog-scroll { padding-inline: clamp(20px,3vw,34px) !important; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-field { font-size: 12px !important; line-height: 1.6 !important; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-field input { font-size: 13px !important; line-height: 1.5 !important; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-chooser-title { margin-block: 20px 14px !important; gap: 12px !important; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-chooser-title strong { font-size: 14px !important; line-height: 1.4 !important; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-chooser-title span { font-size: 11px !important; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-chooser { gap: 14px !important; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-chooser-option { min-width: 0; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-chooser-label { padding-block: 11px 13px !important; gap: 5px !important; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-chooser-label strong { font-size: 13px !important; line-height: 1.4 !important; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-chooser-label small { font-size: 11px !important; line-height: 1.5 !important; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-dialog-footer { gap: 12px !important; padding: 20px clamp(20px,3vw,34px) !important; }
+.pf-dash-backdrop .pf-dash-create-dialog .pf-dash-dialog-footer button { font-size: 12px !important; line-height: 1.45 !important; }
+/* Compatibilidade com dashboard anterior, caso o projeto ainda use o modal legado. */
+.pf-modal-overlay .pf-create-modal { font-size: 13px !important; line-height: 1.55 !important; }
+.pf-modal-overlay .pf-create-modal h2 { font-size: clamp(24px,2.5vw,32px) !important; line-height: 1.16 !important; margin-block: 12px 20px !important; }
+.pf-modal-overlay .pf-create-modal .pf8-modal-scroll { padding: clamp(22px,3vw,34px) !important; }
+.pf-modal-overlay .pf-create-modal .pf4-template-chooser { margin-top: 24px !important; }
+.pf-modal-overlay .pf-create-modal .pf4-template-chooser > strong { font-size: 14px !important; line-height: 1.5 !important; }
+.pf-modal-overlay .pf-create-modal .pf4-template-note { font-size: 12px !important; line-height: 1.65 !important; margin-block: 9px 17px !important; }
+.pf-modal-overlay .pf-create-modal .pf4-template-picker { gap: 14px !important; }
+.pf-modal-overlay .pf-create-modal .pf4-template-option { padding: 12px !important; }
+.pf-modal-overlay .pf-create-modal .pf4-template-option strong { font-size: 13px !important; line-height: 1.4 !important; }
+.pf-modal-overlay .pf-create-modal .pf4-template-option small { font-size: 11px !important; line-height: 1.5 !important; }
+.pf-modal-overlay .pf-create-modal .pf8-modal-footer { padding: 18px 26px !important; gap: 12px !important; }
+.pf-modal-overlay .pf-create-modal .pf8-modal-footer button { font-size: 12px !important; }
+@media(max-width:600px){
+ .pf-dash-backdrop .pf-dash-create-dialog .pf-dash-dialog-head h2,
+ .pf-modal-overlay .pf-create-modal h2 { font-size: 24px !important; }
+ .pf-dash-backdrop .pf-dash-create-dialog .pf-dash-chooser { gap: 10px !important; }
+}

@@ -1,0 +1,8 @@
+
+.pf-full-preview .render-root{min-height:100vh}
+.render-root{isolation:isolate}
+.render-section{position:relative;overflow:hidden;padding:clamp(76px,9vw,150px) clamp(24px,7vw,110px)}
+.render-inner{max-width:1220px}.render-section h2{font-size:clamp(38px,5.1vw,83px);letter-spacing:-.075em;line-height:1.035;font-weight:800}
+.render-section .eyebrow{font-weight:800;font-size:11px;letter-spacing:.2em}
+.render-section .subtitle{font-size:clamp(17px,1.65vw,23px);max-width:710px;line-height:1.55}
+.render-section .bodycopy{max-width:740px;line-height:1.85}

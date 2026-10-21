@@ -1,0 +1,6 @@
+
+.modal{border-radius:22px!important;border:1px solid #ffffff22!important;box-shadow:0 35px 100px #0008}
+.btn{transition:transform .18s,box-shadow .18s,background .18s}.btn:hover{transform:translateY(-1px)}
+:focus-visible{outline:2px solid #a79aff;outline-offset:3px}
+@media(max-width:800px){.app-main{padding:18px!important}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.site-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:520px){.metric-grid,.site-grid{grid-template-columns:1fr!important}.page-top{gap:14px;flex-wrap:wrap}.site-thumb{min-height:200px}.login-page{padding:12px!important}}

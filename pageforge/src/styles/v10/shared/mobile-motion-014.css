@@ -1,0 +1,3 @@
+
+@media(hover:none){.site-card:hover,.pf4-template-option:hover,.btn:hover,.iconbtn:hover{transform:none!important}.pf6-site .pf4-gallery-card:hover img{transform:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}

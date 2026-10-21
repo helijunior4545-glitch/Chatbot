@@ -1,0 +1,8 @@
+
+.editor{background:#090b10}.editor-top{height:74px;background:#0f1219;border-color:var(--pf-border);padding:0 20px}
+.editor-sidebar,.inspector{background:#10141b}.editor-sidebar{border-color:var(--pf-border)}.inspector{border-color:var(--pf-border)}
+.editor-stage{background-color:#222630;background-image:radial-gradient(#ffffff18 .75px,transparent .75px);background-size:18px 18px;padding:34px}
+.canvas-frame{box-shadow:0 25px 85px #0007;border-radius:5px;overflow:hidden;min-height:90%;transition:width .25s ease}
+.canvas-frame.mobile{width:390px}.layer{margin-bottom:4px}.layer.selected{background:#29233e;border-color:#9079ef}
+.catalog button{background:#1a1f2a;border-color:#ffffff14;padding:13px 10px}.catalog button:hover{background:#262337}
+.inspector-head{position:sticky;top:0;background:#10141b;z-index:1}

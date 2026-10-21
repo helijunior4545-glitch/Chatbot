@@ -1,0 +1,1 @@
+.upload-label{border:1px dashed #50506c;padding:12px;display:flex!important;flex-direction:row!important;align-items:center;cursor:pointer}.upload-label input{display:none}.property-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.property-actions .danger{grid-column:span 2}
