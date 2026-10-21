@@ -1,0 +1,39 @@
+# Base44 sandbox/dev compose for PageForge Studio.
+# Runs the Vite dev server from the cloned source (bind mount) so edits show up live.
+# The repo's own compose is not used: this one never builds or runs a prebuilt app image.
+# Docs: pageforge/README.md — run from the repo root:
+#   docker compose -f docker-compose.base44.yml up -d --build
+services:
+  web:
+    image: node:22
+    working_dir: /app
+    # Deps live in a named volume and are synced from pageforge/package-lock.json on start.
+    command:
+      - sh
+      - -ec
+      - CI=true npm ci --no-audit --no-fund && exec npx vite --host 0.0.0.0 --port 5173 --strictPort
+    restart: on-failure
+    labels:
+      base44.project: PageForge Studio
+      base44.kind: web
+      base44.port: "3000"
+    ports:
+      - "3000:5173"
+    environment:
+      - BASE44_PREVIEW_MODE
+      - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS
+      - BASE44_PUBLIC_HOST_SUFFIX
+      - VITE_DATA_PROVIDER=local
+    volumes:
+      - ./pageforge:/app
+      - pageforge_node_modules:/app/node_modules
+    healthcheck:
+      # Serves the app's index.html: proves the dev server is actually responding.
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:5173/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 120s
+
+volumes:
+  pageforge_node_modules:
