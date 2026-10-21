@@ -15,9 +15,12 @@ docker compose -f docker-compose.base44.yml up -d --build   # from the repo root
 docker compose -f docker-compose.base44.yml logs -f web
 ```
 
-- Single service (`web`) on host port **3000**, `node:22-slim` running the Vite dev server
-  from the bind-mounted source, so edits apply live. There is no backend, database or
-  migration step.
+- Two services: `web` on host port **3000** (`node:22-slim`, Vite dev server from the
+  bind-mounted source) and `api` (`node server/copilot.mjs`, internal port 8787, the AI
+  copilot backend). There is no database or migration step.
+- `vite.config.ts` proxies `/api` to `$AI_PROXY_TARGET` (compose sets `http://api:8787`), so
+  the browser talks to the copilot on the same origin. Restart `api` after editing
+  `pageforge/server/copilot.mjs` (plain `node`, no watcher); `web` hot-reloads.
 - Dependencies are installed at container start with `npm ci` into the named volume
   `pageforge_node_modules` (the source bind mount would otherwise hide them). Editing
   `package.json`/`package-lock.json` needs a `docker compose ... up -d` (re-runs `npm ci`),
@@ -32,9 +35,14 @@ docker compose -f docker-compose.base44.yml logs -f web
 
 - Default mode stores everything in the browser `localStorage` (the `VITE_DATA_PROVIDER`
   value in `.env.example` is not actually read). No external service is required to run.
-- The AI Design Copilot uses a deterministic **mock** mode by default. The real path needs
-  `VITE_PAGEFORGE_AI_ENDPOINT` pointing at an authenticated backend function; without it the
-  "Base44 (real)" option fails by design.
+- The AI Design Copilot ("IA real (API)") posts to `/api/copilot`, handled by
+  `pageforge/server/copilot.mjs`. It calls an **OpenAI-compatible** provider using the
+  platform secret `AI_API_KEY` (see `/run/base44/app.env`); `.env.base44-defaults` holds the
+  non-secret `AI_BASE_URL` / `AI_MODEL` defaults so the dashboard can override them. Without
+  `AI_API_KEY` the API answers 503 and the editor's "Mock (sem API)" mode still works.
+- Provider failures are returned as 4xx (429 when the provider is rate limited, 422
+  otherwise) on purpose: the preview proxy replaces any 5xx body with its own "Preview
+  starting…" page, which would hide the provider's message from the UI.
 - The optional Base44 integration (`pageforge/src/integrations/base44.ts`) needs
   `VITE_BASE44_APP_ID` plus provisioned `PFWorkspace`/`PFSite`/`PFLead`/`PFEvent` entities.
 

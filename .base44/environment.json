@@ -2,5 +2,11 @@
   "previewPort": 3000,
   "healthPath": "/",
   "startCommand": "docker compose -f docker-compose.base44.yml up -d",
-  "secrets": []
+  "secrets": [
+    {
+      "name": "AI_API_KEY",
+      "description": "Chave do provedor de IA (compatível com a API OpenAI) usada pelo copiloto do editor. Sem ela o copiloto responde 503 e o editor usa o modo Mock.",
+      "requiredAtBoot": false
+    }
+  ]
 }

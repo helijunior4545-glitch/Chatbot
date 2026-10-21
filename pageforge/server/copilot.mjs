@@ -148,11 +148,14 @@ async function askProvider(payload) {
     } catch {
       /* provedor devolveu texto puro */
     }
-    throw Object.assign(new Error(`Provedor de IA retornou HTTP ${response.status}: ${detail}`), { status: 502 });
+    // 5xx aqui é mascarado pelo proxy de preview (ele assume "app fora do ar"),
+    // então repassamos a falha do provedor como 4xx com a mensagem original.
+    const status = response.status === 429 ? 429 : 422;
+    throw Object.assign(new Error(`Provedor de IA retornou HTTP ${response.status}: ${detail}`), { status });
   }
   const data = JSON.parse(body);
   const answer = data?.choices?.[0]?.message?.content;
-  if (!answer) throw Object.assign(new Error('Provedor de IA devolveu uma resposta vazia.'), { status: 502 });
+  if (!answer) throw Object.assign(new Error('Provedor de IA devolveu uma resposta vazia.'), { status: 422 });
   return parseJsonAnswer(answer);
 }
 
