@@ -24,6 +24,10 @@ services:
       - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS
       - BASE44_PUBLIC_HOST_SUFFIX
       - VITE_DATA_PROVIDER=local
+      # App id Base44 (publico, nao e segredo): o sandbox nao recebe o <script data-app-id>
+      # que a plataforma injeta na pagina publicada, entao o copiloto "Base44 (real)" precisa
+      # do id aqui para chamar a funcao pageforgeCopilot do app.
+      - VITE_BASE44_APP_ID=6ad936b0914656098ab042ac
     volumes:
       - ./pageforge:/app
       - pageforge_node_modules:/app/node_modules

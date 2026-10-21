@@ -2,17 +2,27 @@
 
 ## Layout
 - The repo root holds a single project, `pageforge/`: a Vite + React 18 SPA
-  (`"type": "module"`, TypeScript). There is **no backend service**: `py.py` is a
-  one-off local code-patch script and `base44/functions/pageforgeCopilot.ts` is an
-  unused contract skeleton.
+  (`"type": "module"`, TypeScript). There is **no local backend service**: `py.py` is
+  a one-off local code-patch script. `base44/functions/pageforgeCopilot.ts` is the
+  app's Base44 backend function (Deno `Deno.serve` handler) — it runs on the Base44
+  platform, never in this sandbox.
 - Everything is client-side. Data comes from `localStorage`
   (`src/lib/local.ts`, `src/lib/useStore.ts`): workspaces, sites, leads, events.
   No database, API, queue or external credential is needed to boot.
 - Login is a local simulation, not real auth: demo personas `demo-ana` (Ana Costa)
   and `demo-bruno` (Bruno Lima) live in `src/lib/local.ts`, plus accounts created
   in the browser (`src/lib/localAccounts.ts`).
-- `VITE_PAGEFORGE_AI_ENDPOINT` (AI copilot "Base44 (real)" mode) and
-  `VITE_BASE44_APP_ID` are optional and inert when empty; mock mode needs nothing.
+- The AI copilot's "Base44 (real)" mode calls the app's own backend function
+  `pageforgeCopilot` (`pageforge/base44/functions/pageforgeCopilot.ts`, a Deno
+  `Deno.serve` handler) through the SDK, so it needs no user configuration:
+  `VITE_BASE44_APP_ID` is read first and, when empty, the app id the Base44
+  platform injects into every published page (`<script data-app-id>`) is used.
+  The sandbox page has no injected id, so `docker-compose.base44.yml` passes the
+  app's public app id to the dev server; without any id the panel reports it.
+  The function is deployed only with the published app — calling it before that
+  returns `Function not found` (HTTP 404) and the panel shows that message.
+  `VITE_PAGEFORGE_AI_ENDPOINT` is now an optional override (self-hosted endpoint);
+  mock mode needs nothing.
 
 ## How to run it here
 ```bash

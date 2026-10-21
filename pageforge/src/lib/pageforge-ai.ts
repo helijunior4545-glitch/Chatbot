@@ -62,15 +62,29 @@ export function mockCopilot(req:AIRequest):AIResult{
  }
  return {operations:validateAIOperations(operations,req.blocks),summary,mode:'mock'};
 }
-export async function requestCopilot(req:AIRequest,mode:'mock'|'base44'):Promise<AIResult>{
- if(mode==='mock')return mockCopilot(req);
- const endpoint=(import.meta.env.VITE_PAGEFORGE_AI_ENDPOINT||'').trim();
- if(!endpoint)throw new Error('Base44 nao configurado. Defina VITE_PAGEFORGE_AI_ENDPOINT e um endpoint autenticado.');
+/** Optional override: post to a self-hosted endpoint instead of the app's own Base44 function. */
+async function callEndpoint(endpoint:string,req:AIRequest):Promise<unknown>{
  const url=new URL(endpoint,window.location.origin);
  if(url.protocol!=='https:'&&url.hostname!=='localhost'&&url.hostname!=='127.0.0.1')throw new Error('Endpoint deve usar HTTPS.');
  const response=await fetch(url.toString(),{method:'POST',headers:{'Content-Type':'application/json'},credentials:'include',body:JSON.stringify(req)});
  if(!response.ok)throw new Error('Backend Base44 retornou HTTP '+response.status);
- const data:unknown=await response.json();
+ return response.json();
+}
+/** Calls the app's own Base44 backend function (pageforgeCopilot) through the SDK. */
+async function callBackendFunction(req:AIRequest):Promise<unknown>{
+ const {invokeCopilot}=await import('../integrations/base44');
+ try{return await invokeCopilot(req as unknown as Record<string,unknown>)}
+ catch(error){
+  const status=(error as {status?:number}).status;
+  const detail=error instanceof Error?error.message:String(error);
+  throw new Error('Backend Base44 nao respondeu: '+detail+(status?' (HTTP '+status+')':'')+
+   (status===404?' - a funcao pageforgeCopilot ainda nao esta publicada neste app Base44.':''));
+ }
+}
+export async function requestCopilot(req:AIRequest,mode:'mock'|'base44'):Promise<AIResult>{
+ if(mode==='mock')return mockCopilot(req);
+ const endpoint=(import.meta.env.VITE_PAGEFORGE_AI_ENDPOINT||'').trim();
+ const data:unknown=endpoint?await callEndpoint(endpoint,req):await callBackendFunction(req);
  if(!data||typeof data!=='object')throw new Error('Resposta Base44 invalida.');
  const result=data as Record<string,unknown>;
  return {operations:validateAIOperations(result.operations,req.blocks),summary:clean(result.summary||'Alteracoes geradas',160),mode:'base44'};
